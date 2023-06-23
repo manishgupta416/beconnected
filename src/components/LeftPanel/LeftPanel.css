@@ -1,0 +1,49 @@
+.sidebar1 {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px 20px;
+  width: 400px;
+  align-items: center;
+}
+.side-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 20px;
+}
+.flex-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-create-post {
+  border: 2px solid;
+  border-radius: 10px;
+  color: #1b74e4;
+  cursor: pointer;
+  font-size: large;
+
+  padding: 10px;
+  text-transform: capitalize;
+}
+
+.user-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin: 15px 0;
+}
+.user-img {
+  width: 50px;
+  height: 50px;
+  background-color: #1b74e4;
+  border-radius: 50%;
+}
+.user-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
