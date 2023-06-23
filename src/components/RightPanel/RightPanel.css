@@ -1,0 +1,26 @@
+.right-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px 20px;
+  width: 400px;
+  align-items: center;
+}
+.buttons-rightside {
+  display: flex;
+  gap: 10px;
+}
+
+.flex-row-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  border: 2px solid blue;
+  background-color: blue;
+  color: white;
+}
+.btn-follow {
+  padding: 5px 10px;
+  border: 2px solid blue;
+}
