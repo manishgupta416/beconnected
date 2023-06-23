@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import LeftPanel from "../../components/LeftPanel/LeftPanel";
 import RightPanel from "../../components/RightPanel/RightPanel";
 import Sign from "../Sign/Sign";
+import SignUp from "../SignUp/SignUp";
 
 const Home = () => {
   return (
@@ -10,7 +11,8 @@ const Home = () => {
       {/* <Navbar /> */}
       {/* <LeftPanel /> */}
       {/* <RightPanel /> */}
-      <Sign />
+      {/* <Sign /> */}
+      <SignUp />
     </div>
   );
 };
