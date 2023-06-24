@@ -1,12 +1,51 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "./SignUp.css";
 import social2 from "../../assets/social2.jpg";
 import { AuthContext } from "../../context/AuthContext";
 
 const SignUp = () => {
-  const { item } = useContext(AuthContext);
+  const { signUpHandler } = useContext(AuthContext);
+
+  const [userSignupDetails, setUserSignupDetails] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    password: "",
+  });
+
+  const handleSignUpInputs = (e, name) => {
+    setUserSignupDetails({ ...userSignupDetails, [name]: e.target.value });
+    // console.log(userSignupDetails);
+  };
+
+  const handleSignUp = () => {
+    if (
+      (userSignupDetails.firstName !== "" && userSignupDetails.lastName !== "",
+      userSignupDetails.username !== "",
+      userSignupDetails.password !== "")
+    ) {
+      signUpHandler(userSignupDetails);
+    } else {
+      //   alert("all input field should not be empty and password should match ");
+      toast.error(
+        "All input fields should not be empty and both password should match",
+        {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
+    }
+  };
   return (
     <div className="main">
       <div className="main-login-container">
@@ -25,7 +64,7 @@ const SignUp = () => {
                   className="signup-inputs"
                   type="text"
                   name="firstName"
-                  //   onChange={(e) => handleSignUpInputs(e, "firstName")}
+                  onChange={(e) => handleSignUpInputs(e, "firstName")}
                 />
               </div>
             </div>
@@ -36,18 +75,18 @@ const SignUp = () => {
                   className="signup-inputs"
                   type="text"
                   name="lastName"
-                  //   onChange={(e) => handleSignUpInputs(e, "lastName")}
+                  onChange={(e) => handleSignUpInputs(e, "lastName")}
                 />
               </div>
             </div>
             <div className="signup-items">
               <div className="signup-input-container">
-                <label htmlFor="">Email</label>
+                <label htmlFor="">Username</label>
                 <input
                   className="signup-inputs"
                   type="email"
-                  name="email"
-                  //   onChange={(e) => handleSignUpInputs(e, "email")}
+                  name="username"
+                  onChange={(e) => handleSignUpInputs(e, "username")}
                 />
               </div>
             </div>
@@ -59,17 +98,14 @@ const SignUp = () => {
                   className="signup-inputs"
                   type="password"
                   name="password"
-                  //   onChange={(e) => handleSignUpInputs(e, "password")}
+                  onChange={(e) => handleSignUpInputs(e, "password")}
                 />
               </div>
             </div>
 
             <div className="signup-items">
               <div className="signup-input-container">
-                <button
-                  className="signup-btn"
-                  //  onClick={handleSignUp}
-                >
+                <button className="signup-btn" onClick={handleSignUp}>
                   Create new account
                 </button>
                 <div className="signup-footer">

@@ -36,8 +36,12 @@ const Sign = () => {
   };
 
   const handleGuestLogin = () => {
+    setUserLoginDetails({
+      username: "manish@gmail.com",
+      password: "manishgupta",
+    });
     signInHandler({
-      username: "manish@gmail.com9",
+      username: "manish@gmail.com",
       password: "manishgupta",
     });
   };
@@ -74,6 +78,7 @@ const Sign = () => {
                   className="login-input"
                   type="email"
                   name="username"
+                  value={userLoginDetails.username}
                   onChange={(e) => handleLoginInputs(e, "username")}
                 />
               </div>
@@ -88,6 +93,7 @@ const Sign = () => {
                   className="login-input"
                   type="password"
                   name="password"
+                  value={userLoginDetails.password}
                   onChange={(e) => handleLoginInputs(e, "password")}
                 />
               </div>
