@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
 import "./SignUp.css";
 import social2 from "../../assets/social2.jpg";
+import { AuthContext } from "../../context/AuthContext";
+
 const SignUp = () => {
+  const { item } = useContext(AuthContext);
   return (
     <div className="main">
       <div className="main-login-container">

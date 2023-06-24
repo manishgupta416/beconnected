@@ -8,11 +8,11 @@ import SignUp from "../SignUp/SignUp";
 const Home = () => {
   return (
     <div>
-      {/* <Navbar /> */}
+      <Navbar />
       {/* <LeftPanel /> */}
       {/* <RightPanel /> */}
       {/* <Sign /> */}
-      <SignUp />
+      {/* <SignUp /> */}
     </div>
   );
 };

@@ -1,11 +1,61 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import "./Sign.css";
 import social from "../../assets/social.jpg";
+import { AuthContext } from "../../context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Sign = () => {
+  const { signInHandler, loginToken, currentUser } = useContext(AuthContext);
+
+  const [userLoginDetails, setUserLoginDetails] = useState({
+    username: "",
+    password: "",
+  });
+  const handleLoginInputs = (e, name) => {
+    setUserLoginDetails({ ...userLoginDetails, [name]: e.target.value });
+    console.log(userLoginDetails);
+  };
+
+  const handleLogin = () => {
+    if (userLoginDetails.username !== "" && userLoginDetails.password !== "") {
+      signInHandler(userLoginDetails);
+    } else {
+      toast.error("Email & Password should not be empty", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
+  const handleGuestLogin = () => {
+    signInHandler({
+      username: "manish@gmail.com9",
+      password: "manishgupta",
+    });
+  };
+
   return (
     <>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="main-login-container">
         <div className="social-img">
           <img src={social} alt="" className="social-img" />
@@ -18,13 +68,13 @@ const Sign = () => {
             <div className="login-items">
               <div className="input-container">
                 <label htmlFor="input" className="input">
-                  Email
+                  Username
                 </label>
                 <input
                   className="login-input"
                   type="email"
-                  name="email"
-                  // onChange={(e) => handleLoginInputs(e, "email")}
+                  name="username"
+                  onChange={(e) => handleLoginInputs(e, "username")}
                 />
               </div>
             </div>
@@ -38,21 +88,15 @@ const Sign = () => {
                   className="login-input"
                   type="password"
                   name="password"
-                  // onChange={(e) => handleLoginInputs(e, "password")}
+                  onChange={(e) => handleLoginInputs(e, "password")}
                 />
               </div>
             </div>
             <div className="login-items">
-              <button
-                className="login-button"
-                //  onClick={handleLogin}
-              >
+              <button className="login-button" onClick={handleLogin}>
                 Login In
               </button>
-              <button
-                className="login-button"
-                //  onClick={handleGuestLogin}
-              >
+              <button className="login-button" onClick={handleGuestLogin}>
                 Login as Guest
               </button>
               <div className="login-footer">
