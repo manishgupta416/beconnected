@@ -45,6 +45,7 @@ const Sign = () => {
       password: "manishgupta",
     });
   };
+  console.log(currentUser);
 
   return (
     <>
