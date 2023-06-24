@@ -7,7 +7,7 @@ import { formatDate } from "../utils/authUtils";
 
 export const users = [
   {
-    _id: uuid(),
+    _id: 1,
     firstName: "Manish",
     lastName: "Gupta",
     username: "manish@gmail.com",
@@ -24,7 +24,7 @@ export const users = [
   },
 
   {
-    _id: uuid(),
+    _id: 2,
     firstName: "Olivia",
     lastName: "Walker",
     username: "oliviawalker",
@@ -41,7 +41,7 @@ export const users = [
   },
 
   {
-    _id: uuid(),
+    _id: 3,
     firstName: "William",
     lastName: "Anderson",
     username: "williamanderson",
@@ -58,7 +58,7 @@ export const users = [
   },
 
   {
-    _id: uuid(),
+    _id: 4,
     firstName: "Sophia",
     lastName: "Rodriguez",
     username: "sophiarodriguez",
@@ -75,7 +75,7 @@ export const users = [
   },
 
   {
-    _id: uuid(),
+    _id: 5,
     firstName: "Daniel",
     lastName: "Thompson",
     username: "danielthompson",
@@ -91,7 +91,7 @@ export const users = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: 6,
     firstName: "Emily",
     lastName: "Davis",
     username: "emilydavis",
@@ -107,7 +107,7 @@ export const users = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: 7,
     firstName: "David",
     lastName: "Wilson",
     username: "davidwilson",
@@ -123,7 +123,7 @@ export const users = [
     updatedAt: formatDate(),
   },
   {
-    _id: uuid(),
+    _id: 8,
     firstName: "John",
     lastName: "Doe",
     username: "johndoe",
@@ -140,7 +140,7 @@ export const users = [
   },
 
   {
-    _id: uuid(),
+    _id: 9,
     firstName: "Jane",
     lastName: "Smith",
     username: "janesmith",

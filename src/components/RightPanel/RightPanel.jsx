@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./RightPanel.css";
+import { AuthContext } from "../../context/AuthContext";
 
 const RightPanel = () => {
+  const { signInHandler, loginToken, currentUser } = useContext(AuthContext);
   return (
     <>
       <div className="right-sidebar">
