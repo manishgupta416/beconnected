@@ -1,0 +1,56 @@
+.profile-details-container {
+  display: flex;
+  width: 600px;
+  flex-direction: column;
+  gap: 10px;
+  border-left: 1px solid blue;
+  border-right: 1px solid blue;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 0 5px;
+  padding: 0 5px;
+}
+.reply-container {
+  display: flex;
+  gap: 15px;
+}
+.input-comment-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 10px;
+}
+.reply-input {
+  width: 100%;
+  text-align: center;
+  width: 100%;
+  text-align: center;
+  font-size: large;
+  color: blue;
+
+  cursor: pointer;
+  border-radius: 10px;
+}
+.reply-btn {
+  padding: 5px 20px;
+  font-size: larger;
+  padding: 5px 20px;
+  background-color: blue;
+  color: white;
+  border: 0;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.users-reply {
+  display: flex;
+  gap: 25px;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+hr {
+  border: 1px solid blue;
+}

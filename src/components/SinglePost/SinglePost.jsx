@@ -9,19 +9,19 @@ const SinglePost = () => {
           <img
             src="https://picsum.photos/id/1012/150"
             alt=""
-            className="user-img"
+            className="user-img cursor"
           />
         </di>
         <div className="post-details">
           <div className="user-info">
             <div className="user-detail">
-              <div className="loggedIn-details">
+              <div className="loggedIn-details cursor">
                 <div className="user-name">manish kumar gupta</div>
                 <div className="user-id">@manishgupta</div>
               </div>
 
               <div className="post-date">24 June 2023</div>
-              <div className="sort-icon">
+              <div className="sort-icon cursor">
                 <i class="fa-solid fa-list"></i>
               </div>
             </div>
@@ -40,13 +40,13 @@ const SinglePost = () => {
             />
           </div>
           <div className="task-btn">
-            <button>
+            <button className="cursor">
               <i class="fa-regular fa-thumbs-up fa-xl"></i>
             </button>
-            <button>
+            <button className="cursor">
               <i class="fa-regular fa-bookmark fa-xl"></i>
             </button>
-            <button>
+            <button className="cursor">
               <i class="fa-regular fa-comment fa-xl"></i>
             </button>
           </div>

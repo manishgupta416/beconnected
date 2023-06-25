@@ -24,6 +24,7 @@ import {
 } from "../../services/DataServices.js";
 import { AuthContext } from "../../context/AuthContext";
 import SinglePost from "../../components/SinglePost/SinglePost";
+import PostDetails from "../PostDetails/PostDetails";
 const Home = () => {
   const { loginToken } = useContext(AuthContext);
 
@@ -115,7 +116,8 @@ const Home = () => {
       {/* <RightPanel /> */}
       {/* <Sign /> */}
       {/* <SignUp /> */}
-      <SinglePost />
+      {/* <SinglePost /> */}
+      <PostDetails />
     </div>
   );
 };
