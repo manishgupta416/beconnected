@@ -23,6 +23,7 @@ import {
   unfollowUserHandler,
 } from "../../services/DataServices.js";
 import { AuthContext } from "../../context/AuthContext";
+import SinglePost from "../../components/SinglePost/SinglePost";
 const Home = () => {
   const { loginToken } = useContext(AuthContext);
 
@@ -109,11 +110,12 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       {/* <LeftPanel /> */}
       {/* <RightPanel /> */}
       {/* <Sign /> */}
       {/* <SignUp /> */}
+      <SinglePost />
     </div>
   );
 };
