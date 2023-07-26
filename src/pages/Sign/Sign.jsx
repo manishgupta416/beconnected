@@ -37,12 +37,12 @@ const Sign = () => {
 
   const handleGuestLogin = () => {
     setUserLoginDetails({
-      username: "manish@gmail.com",
-      password: "manishgupta",
+      username: "manishgupta",
+      password: "manishgupta123",
     });
     signInHandler({
-      username: "manish@gmail.com",
-      password: "manishgupta",
+      username: "manishgupta",
+      password: "manishgupta123",
     });
   };
   console.log(currentUser);

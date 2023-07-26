@@ -111,13 +111,9 @@ const Home = () => {
 
   return (
     <div>
-      {/* <Navbar /> */}
-      {/* <LeftPanel /> */}
-      {/* <RightPanel /> */}
-      {/* <Sign /> */}
-      {/* <SignUp /> */}
-      {/* <SinglePost /> */}
-      <PostDetails />
+      <Navbar />
+      <LeftPanel />
+      <RightPanel />
     </div>
   );
 };
