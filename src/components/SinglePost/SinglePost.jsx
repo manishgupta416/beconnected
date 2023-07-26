@@ -44,10 +44,10 @@ const SinglePost = () => {
               <i class="fa-regular fa-thumbs-up fa-xl"></i>
             </button>
             <button className="cursor">
-              <i class="fa-regular fa-bookmark fa-xl"></i>
+              <i class="fa-regular fa-comment fa-xl"></i>
             </button>
             <button className="cursor">
-              <i class="fa-regular fa-comment fa-xl"></i>
+              <i class="fa-regular fa-bookmark fa-xl"></i>
             </button>
           </div>
         </div>

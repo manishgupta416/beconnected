@@ -35,13 +35,6 @@ const LeftPanel = () => {
             <div className="user-email">manish.info2020@gmail.com</div>
           </div>
         </div>
-        <div className="user-profile">
-          <div className="user-img"></div>
-          <div className="user-details">
-            <div className="user-name">Manish</div>
-            <div className="user-email">manish.info2020@gmail.com</div>
-          </div>
-        </div>
       </div>
     </div>
   );

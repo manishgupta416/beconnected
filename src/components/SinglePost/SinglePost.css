@@ -45,7 +45,7 @@
 .task-btn {
   display: flex;
   margin: 10px;
-  width: 50%;
+  width: 100%;
   display: flex;
   gap: 10px;
   justify-content: space-evenly;

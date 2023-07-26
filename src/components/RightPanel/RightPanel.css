@@ -5,6 +5,8 @@
   padding: 10px 20px;
   width: 400px;
   align-items: center;
+  position: fixed;
+  background-color: whitesmoke;
 }
 .buttons-rightside {
   display: flex;
