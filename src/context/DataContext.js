@@ -6,15 +6,15 @@ import { getAllPosts, getAllUsers } from "../services/DataServices";
 
 export const DataContext = createContext();
 export const DataProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(DataReducer, initialState);
+  const [dataState, dataDispatch] = useReducer(DataReducer, initialState);
 
   useEffect(() => {
-    getAllPosts(dispatch);
-    getAllUsers(dispatch);
+    getAllPosts(dataDispatch);
+    getAllUsers(dataDispatch);
   }, []);
 
   return (
-    <DataContext.Provider value={{ user: "manish" }}>
+    <DataContext.Provider value={{ user: "manish", dataState, dataDispatch }}>
       {children}
     </DataContext.Provider>
   );

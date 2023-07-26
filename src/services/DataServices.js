@@ -2,12 +2,12 @@ import axios from "axios";
 
 //User
 
-export const getAllUsers = async (dispatch) => {
+export const getAllUsers = async (dataDispatch) => {
   try {
     const response = await axios.get("/api/users");
     if (response.status === 200) {
       console.log(response.data.users);
-      dispatch({ type: "getAllUsers", payload: response.data.users });
+      dataDispatch({ type: "getAllUsers", payload: response.data.users });
     }
   } catch (error) {
     console.error(error);
@@ -46,12 +46,12 @@ export const editUserHandler = async (currentUserDetails, loginToken) => {
 
 //Post
 
-export const getAllPosts = async (dispatch) => {
+export const getAllPosts = async (dataDispatch) => {
   try {
     const response = await axios.get("/api/posts");
     if (response.status === 200) {
       console.log(response.data.posts);
-      dispatch({ type: "getAllPosts", payload: response.data.posts });
+      dataDispatch({ type: "getAllPosts", payload: response.data.posts });
     }
   } catch (error) {
     console.error(error);
