@@ -18,6 +18,17 @@ export const DataReducer = (state, action) => {
             : user
         ),
       };
+
+    case "addPostToBookmark":
+      console.log(action.payload.user.username, "added in Book");
+      return {
+        ...state,
+        users: state.users.map((user) =>
+          user.username === action.payload.user.username
+            ? { ...user, bookmarks: [...action.payload.bookmarks] }
+            : user
+        ),
+      };
     default:
       return { ...state };
   }

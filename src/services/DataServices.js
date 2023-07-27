@@ -140,7 +140,7 @@ export const editPostHandler = async (postId, postData, loginToken) => {
 
 // Like/Dislike
 
-export const likePostHandler = async (postId, loginToken) => {
+export const likePostHandler = async (postId, loginToken, dataDispatch) => {
   try {
     const response = await axios.post(
       `/api/posts/like/${postId}`,
@@ -151,15 +151,16 @@ export const likePostHandler = async (postId, loginToken) => {
         },
       }
     );
-    if (response.status === 200) {
-      console.log(response);
+    if (response.status === 200 || response.status === 201) {
+      console.log(response.data.posts, "lik res");
+      dataDispatch({ type: "getAllPosts", payload: response.data.posts });
     }
   } catch (error) {
     console.error(error);
   }
 };
 
-export const disLikePostHandler = async (postId, loginToken) => {
+export const disLikePostHandler = async (postId, loginToken, dataDispatch) => {
   try {
     const response = await axios.post(
       `/api/posts/dislike/${postId}`,
@@ -170,8 +171,9 @@ export const disLikePostHandler = async (postId, loginToken) => {
         },
       }
     );
-    if (response.status === 200) {
-      console.log(response);
+    if (response.status === 200 || response.status === 201) {
+      console.log(response.data.posts, "dislik res");
+      dataDispatch({ type: "getAllPosts", payload: response.data.posts });
     }
   } catch (error) {
     console.error(error);
@@ -195,7 +197,12 @@ export const getBookMarkPost = async (loginToken) => {
   }
 };
 
-export const bookMarkPostHandler = async (postId, loginToken) => {
+export const bookMarkPostHandler = async (
+  postId,
+  loginToken,
+  dataDispatch,
+  loggedInuser
+) => {
   try {
     const response = await axios.post(
       `/api/users/bookmark/${postId}`,
@@ -208,6 +215,11 @@ export const bookMarkPostHandler = async (postId, loginToken) => {
     );
     if (response.status === 200) {
       console.log(response.data.bookmarks);
+      console.log(loggedInuser, "from serv");
+      dataDispatch({
+        type: "addPostToBookmark",
+        payload: { bookmarks: response.data.bookmarks, user: loggedInuser },
+      });
     }
   } catch (error) {
     console.error(error);
@@ -215,7 +227,12 @@ export const bookMarkPostHandler = async (postId, loginToken) => {
 };
 // TODO:fix remove bookmark
 
-export const removeBookMarkPostHandler = async (postId, loginToken) => {
+export const removeBookMarkPostHandler = async (
+  postId,
+  loginToken,
+  dataDispatch,
+  loggedInuser
+) => {
   try {
     const response = await axios.post(
       `/api/users/remove-bookmark/${postId}`,
@@ -226,8 +243,12 @@ export const removeBookMarkPostHandler = async (postId, loginToken) => {
         },
       }
     );
-    if (response.status === 200) {
+    if (response.status === 200 || response.status === 201) {
       console.log(response);
+      dataDispatch({
+        type: "removePostFromBookmark",
+        payload: { bookmarks: response.data.bookmarks, user: loggedInuser },
+      });
     }
   } catch (error) {
     console.error(error);
@@ -282,53 +303,3 @@ export const unfollowUserHandler = async (followUserId, loginToken) => {
     console.error(error);
   }
 };
-
-//for testing json
-// "userData": {
-//     "_id": "9",
-//     "firstName": "Jane",
-//     "lastName": "Smith",
-//     "username": "janesmith",
-//     "password": "janesmith456",
-//     "bio": "Coding enthusiast",
-//     "bookmarks": "[]",
-//     "followers": "[]",
-//     "following": "[]",
-//     "website": "https://example.com/"
-//   }
-
-//username cannot be changed
-// { "userData": {
-//     "_id": "1",
-//     "firstName": "Manish",
-//     "lastName": "Smithcs",
-//     "username": "manish@gmail.com",
-//     "password": "manishgupta",
-//     "bio": "Coding enthusiast",
-//     "bookmarks": "[]",
-//     "followers": "[]",
-//     "following": "[]",
-//     "website": "https://example.com/"
-//   }
-// }
-
-// {"userData":{"_id":"1","firstName":"mahak","lastName":"gupta","username":"manish@gmail.com","password":"manishguptass","bio":"Coding enthusiast","bookmarks":"[]","followers":"[]","following":"[]","website":"https://example.com/"}}
-
-// {"postData":{
-//     "_id": "2",
-//     "content": "priya",
-
-//     "username": "priya"
-//   }}
-//username is taken as current user loggedIn
-// {you can delete only your post cannot delete other username person post}"
-// like other user post by id
-// one use can like only once
-// can not decremnt less than zero disllie handler karta hai
-
-//bookmark ham kisi bhi user ke post ko kar skte hai
-
-//  // responsefollow unfollow
-// :
-// "{\"errors\":[\"You cannot follow yourself\"]}"
-// \"User Already following\"]}"
