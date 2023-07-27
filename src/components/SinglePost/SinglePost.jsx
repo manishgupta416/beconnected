@@ -5,10 +5,12 @@ import { DataContext } from "../../context/DataContext";
 import { AuthContext } from "../../context/AuthContext";
 import {
   bookMarkPostHandler,
+  deletePostHandler,
   disLikePostHandler,
   likePostHandler,
   removeBookMarkPostHandler,
 } from "../../services/DataServices";
+import { useState } from "react";
 
 const SinglePost = ({ post }) => {
   const { dataState, dataDispatch } = useContext(DataContext);
@@ -51,7 +53,25 @@ const SinglePost = ({ post }) => {
   ) => {
     removeBookMarkPostHandler(_id, loginToken, dataDispatch, loggedInuser);
   };
-  console.log(loggedInuser, "book");
+  // console.log(loggedInuser, "book");
+
+  const [isDialogOpen, setDialogOpen] = useState(false);
+
+  const handleButtonClick = () => {
+    setDialogOpen(true);
+  };
+
+  const handleDialogOutsideClick = () => {
+    setDialogOpen(false);
+  };
+
+  const handleEditPost = (_id) => {
+    console.log(_id);
+  };
+  const handleDeletePost = (_id, loginToken, dataDispatch) => {
+    deletePostHandler(_id, loginToken, dataDispatch);
+    setDialogOpen(false);
+  };
   return (
     <div>
       <div className="post-container">
@@ -62,7 +82,7 @@ const SinglePost = ({ post }) => {
             className="user-img cursor"
           />
         </div>
-        <div className="post-details">
+        <div className="post-details" style={{ position: "relative" }}>
           <div className="user-info">
             <div className="user-detail">
               <div className="loggedIn-details cursor">
@@ -73,9 +93,56 @@ const SinglePost = ({ post }) => {
               </div>
 
               <div className="post-date">{post?.createdAt.split("T")[0]}</div>
-              <div className="sort-icon cursor">
+              <div className="sort-icon cursor" onClick={handleButtonClick}>
                 <i class="fa-solid fa-list"></i>
               </div>
+              {isDialogOpen && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    // background: "rgba(0, 0, 0, 0.5)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  onClick={handleDialogOutsideClick}
+                >
+                  <div
+                    style={{
+                      background: "#fff",
+                      padding: "16px",
+                      borderRadius: "8px",
+                      boxShadow: "0 0 16px rgba(0, 0, 0, 0.3)",
+                      maxWidth: "240px",
+                      position: "absolute",
+                      right: "25px",
+                      top: "6px",
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <ul style={{ listStyleType: "none", padding: 0 }}>
+                      <li
+                        onClick={() => handleEditPost(_id)}
+                        style={{ cursor: "pointer", marginBottom: "8px" }}
+                      >
+                        Edit
+                      </li>
+                      <li
+                        onClick={() =>
+                          handleDeletePost(post._id, loginToken, dataDispatch)
+                        }
+                        style={{ cursor: "pointer", marginBottom: "8px" }}
+                      >
+                        Delete
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="post-content">

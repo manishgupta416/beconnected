@@ -29,6 +29,8 @@ export const DataReducer = (state, action) => {
             : user
         ),
       };
+    case "deletePost":
+      return { ...state, posts: [...action.payload] };
     default:
       return { ...state };
   }

@@ -99,7 +99,7 @@ export const createNewPostHandler = async (post, loginToken) => {
   }
 };
 
-export const deletePostHandler = async (postId, loginToken) => {
+export const deletePostHandler = async (postId, loginToken, dataDispatch) => {
   try {
     const response = await axios.delete(
       `/api/posts/${postId}`,
@@ -110,8 +110,9 @@ export const deletePostHandler = async (postId, loginToken) => {
         },
       }
     );
-    if (response.status === 200) {
+    if (response.status === 200 || response.status === 201) {
       console.log(response);
+      dataDispatch({ type: "deletePost", payload: response.data.posts });
     }
   } catch (error) {
     console.error(error);
