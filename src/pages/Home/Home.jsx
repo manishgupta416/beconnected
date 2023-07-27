@@ -4,8 +4,11 @@ import Navbar from "../../components/Navbar/Navbar";
 import LeftPanel from "../../components/LeftPanel/LeftPanel";
 import RightPanel from "../../components/RightPanel/RightPanel";
 import SinglePost from "../../components/SinglePost/SinglePost";
+import { useContext } from "react";
+import { DataContext } from "../../context/DataContext";
 
 const Home = () => {
+  const { dataState, dataDispatch } = useContext(DataContext);
   return (
     <div className="main-container">
       <div className="nav">
@@ -15,7 +18,9 @@ const Home = () => {
         <LeftPanel />
       </div>
       <div className="content">
-        <SinglePost />
+        {dataState.posts.map((post) => (
+          <SinglePost post={post} key={post._id} />
+        ))}
       </div>
       <div className="right-side">
         <RightPanel />

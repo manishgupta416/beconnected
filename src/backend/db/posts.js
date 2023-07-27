@@ -371,7 +371,7 @@ export const posts = [
     content:
       "🔥🚀 Unleash the Power of React.js! ⚛️💻.🌈 Embrace the React.js magic and join the vibrant community of developers crafting innovative web applications. Share your React.js projects, tips, and favorite libraries below, and let's learn and grow together! 🚀💬",
     mediaUrl:
-      "https://images.unsplash.com/photo-1632103825146-8aff3b18fe2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTEzfHxjdXRlJTIwYmlyZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRE-HX6p9AzHLCaYoCUn8o5JxW39dydYdn8hg&usqp=CAU",
     likes: {
       likeCount: 4,
       likedBy: [],

@@ -1,9 +1,29 @@
 import React, { useContext } from "react";
 import "./RightPanel.css";
 import { AuthContext } from "../../context/AuthContext";
+import { DataContext } from "../../context/DataContext";
+import { followUserHandler } from "../../services/DataServices";
 
 const RightPanel = () => {
-  const { signInHandler, loginToken, currentUser } = useContext(AuthContext);
+  const { dataState, dataDispatch } = useContext(DataContext);
+  const { currentUser, loginToken } = useContext(AuthContext);
+
+  const handleFollow = (_id, loginToken, dataDispatch) => {
+    followUserHandler(_id, loginToken, dataDispatch);
+  };
+
+  const user = dataState?.users?.find(
+    (user) => user?.username === currentUser?.username
+  ); // to get updated current user info
+
+  const followedUsers = user?.following.map((user) => user?.username); // loggedIn user following arr
+
+  const suggestedUsers = dataState?.users?.filter(
+    (user) =>
+      user?.username !== currentUser?.username &&
+      !followedUsers.includes(user?.username)
+  );
+
   return (
     <>
       <div className="right-sidebar">
@@ -18,32 +38,35 @@ const RightPanel = () => {
           </div>
         </div>
         <h3>Suggestions for you</h3>
-        <div className="user-profile">
-          <div className="user-img"></div>
-          <div className="user-details">
-            <div className="user-name">Manish</div>
-            <div className="userId">@manish</div>
-          </div>
-          <button className="btn-follow">Follow</button>
-        </div>
-        <div className="user-profile">
-          <div className="user-img"></div>
-          <div className="user-details">
-            <div className="user-name">Manish</div>
-            <div className="userId">@manish</div>
-          </div>
-          <button className="btn-follow">Follow</button>
-        </div>
-        <div className="user-profile">
-          <div className="user-img"></div>
-          <div className="user-details">
-            <div className="user-name">Manish</div>
-            <div className="userId">@manish</div>
-          </div>
+        {suggestedUsers?.map((user) => (
+          <div className="sp-evn">
+            <div className="user-profile flex-even">
+              <div className="user-img">
+                <img
+                  className="user-img"
+                  src={user?.avatarUrl}
+                  alt={user?.firstName}
+                />{" "}
+              </div>
+              <div className="user-details flex-even">
+                <div className="user-name">
+                  {user?.firstName}
+                  {user?.lastName}
+                </div>
+                <div className="userId">@{user?.username}</div>
+              </div>
 
-          <button className="btn-follow">Follow</button>
-        </div>
-        <hr />
+              <button
+                className="btn-follow"
+                onClick={() =>
+                  handleFollow(user?._id, loginToken, dataDispatch)
+                }
+              >
+                Follow
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );

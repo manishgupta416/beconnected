@@ -1,48 +1,57 @@
 import React from "react";
 import "./SinglePost.css";
+import { useContext } from "react";
+import { DataContext } from "../../context/DataContext";
 
-const SinglePost = () => {
+const SinglePost = ({ post }) => {
+  const { dataState } = useContext(DataContext);
+  const { _id, content, firstName, lastName, userName, mediaUrl, createdAt } =
+    post;
+  const userDetails = dataState.users.find(
+    (user) => user.username === post.username
+  );
+
   return (
     <div>
       <div className="post-container">
-        <di className="user-img">
+        <div className="user-img">
           <img
-            src="https://picsum.photos/id/1012/150"
+            src={userDetails?.avatarUrl}
             alt=""
             className="user-img cursor"
           />
-        </di>
+        </div>
         <div className="post-details">
           <div className="user-info">
             <div className="user-detail">
               <div className="loggedIn-details cursor">
-                <div className="user-name">manish kumar gupta</div>
-                <div className="user-id">@manishgupta</div>
+                <div className="user-name">
+                  {post?.firstName} {post?.lastName}
+                </div>
+                <div className="user-id">{post?.username}</div>
               </div>
 
-              <div className="post-date">24 June 2023</div>
+              <div className="post-date">{post?.createdAt.split("T")[0]}</div>
               <div className="sort-icon cursor">
                 <i class="fa-solid fa-list"></i>
               </div>
             </div>
           </div>
           <div className="post-content">
-            <div>
-              Went to this hangout place, Bob's in Marathalli yesterday. The
-              ambience is real good and the mocktails are really fresh.
+            <div>{post?.content}</div>
+          </div>
+          {post?.mediaUrl && (
+            <div className="post-img">
+              <img className="post-img" src={post?.mediaUrl} alt="" />
             </div>
-          </div>
-          <div className="post-img">
-            <img
-              className="post-img"
-              src="https://res.cloudinary.com/dwebygldw/image/upload/v1652908952/frittr/zwpmppawiyxwthsmikyk.webp"
-              alt=""
-            />
-          </div>
+          )}
           <div className="task-btn">
-            <button className="cursor">
-              <i class="fa-regular fa-thumbs-up fa-xl"></i>
-            </button>
+            <span>
+              <button className="cursor">
+                <i class="fa-regular fa-thumbs-up fa-xl"></i>
+              </button>{" "}
+              {post.likes.likeCount}{" "}
+            </span>{" "}
             <button className="cursor">
               <i class="fa-regular fa-comment fa-xl"></i>
             </button>

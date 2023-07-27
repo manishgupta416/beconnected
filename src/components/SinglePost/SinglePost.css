@@ -4,6 +4,7 @@
 }
 .post-container {
   display: flex;
+  /* flex-direction: column; */
   gap: 20px;
   justify-content: center;
   width: 590px;
@@ -17,6 +18,8 @@
   flex-direction: column;
   gap: 10px;
   align-items: center;
+  /*for even spacing in all */
+  flex: 1;
 }
 
 .user-detail {

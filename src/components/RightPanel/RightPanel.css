@@ -3,9 +3,11 @@
   flex-direction: column;
   gap: 15px;
   padding: 10px 20px;
+  height: 400px;
   width: 400px;
   align-items: center;
   position: fixed;
+  overflow-y: scroll;
   background-color: whitesmoke;
 }
 .buttons-rightside {
@@ -25,4 +27,17 @@
 .btn-follow {
   padding: 5px 10px;
   border: 2px solid blue;
+}
+.sp-evn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  flex: 1;
+  border: 1px solid #ccc;
+  padding: 10px;
+  flex: 1;
+}
+.flex-even {
+  flex: 1;
 }

@@ -32,6 +32,7 @@
 .content {
   grid-area: content;
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   border: 2px solid;
   height: auto;
