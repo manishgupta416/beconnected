@@ -47,7 +47,7 @@ export const AuthContextProvider = ({ children }) => {
           progress: undefined,
           theme: "light",
         });
-        navigate(location?.state?.from.pathname ?? "/");
+        navigate(location?.state?.from.pathname ?? "/home");
       }
       //   console.log(response);
     } catch (error) {

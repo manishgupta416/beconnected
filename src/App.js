@@ -25,9 +25,9 @@ const App = () => {
       />
       <Routes>
         <Route path="/api-test" element={<Mockman />} />
-        <Route path="/sign-in" element={<Sign />} />
+        <Route path="/" element={<Sign />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
