@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import PageNotFound from "./pages/404/404";
 import Explore from "./pages/Explore/Explore";
 import Bookmarks from "./pages/Bookmarks/Bookmarks";
+import Profile from "./pages/Profile/Profile";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="*" element={<PageNotFound />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/bookmarks" element={<Bookmarks />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </>
   );

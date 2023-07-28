@@ -34,7 +34,7 @@ const LeftPanel = () => {
             <div className="explore">Explore</div>
           </NavLink>
 
-          <NavLink className="flex-row">
+          <NavLink className="flex-row" to={"/profile"}>
             <i class="fa-regular fa-user" style={{ color: "#1b74e4" }}></i>
             <div className="profile">Profile</div>
           </NavLink>

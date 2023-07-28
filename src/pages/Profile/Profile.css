@@ -1,0 +1,55 @@
+.profile-img {
+  width: 100px;
+  height: 100px;
+  border: 2px solid blue;
+  border-radius: 50px;
+}
+.profile-container {
+  display: flex;
+  gap: 10px;
+  border: 1px solid blue;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  height: 500px;
+}
+.profile-info {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
+.user-detail {
+  display: flex;
+  width: 100%;
+  gap: 15px;
+  justify-content: space-between;
+}
+.user-info {
+  display: flex;
+}
+
+.user-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.link,
+.gap {
+  display: flex;
+  gap: 20px;
+}
+.user-follower-following {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.num {
+  font-weight: 700;
+  font-size: large;
+  gap: 10px;
+}
+.gap {
+  display: flex;
+  gap: 5px;
+  justify-content: calc();
+  align-items: center;
+}
