@@ -39,6 +39,15 @@ export const DataReducer = (state, action) => {
       return { ...state, postId: action.payload };
     case "updatedPosts":
       return { ...state, posts: action.payload };
+    case "updatedUserDetails":
+      return {
+        ...state,
+        users: state.users.map((user) =>
+          user.username === action.payload.username
+            ? { ...user, ...action.payload }
+            : user
+        ),
+      };
     default:
       return { ...state };
   }

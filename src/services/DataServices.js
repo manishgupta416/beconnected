@@ -25,7 +25,11 @@ export const getUser = async (_id) => {
   }
 };
 
-export const editUserHandler = async (currentUserDetails, loginToken) => {
+export const editUserHandler = async (
+  currentUserDetails,
+  loginToken,
+  dataDispatch
+) => {
   try {
     const response = await axios.post(
       "/api/users/edit",
@@ -36,8 +40,9 @@ export const editUserHandler = async (currentUserDetails, loginToken) => {
         },
       }
     );
-    if (response.status === 200) {
+    if (response.status === 200 || response.status === 201) {
       console.log(response);
+      dataDispatch({ type: "updatedUserDetails", payload: response.data.user });
     }
   } catch (error) {
     console.error(error);

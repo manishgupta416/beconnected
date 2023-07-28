@@ -53,3 +53,60 @@
   justify-content: calc();
   align-items: center;
 }
+/* edit css */
+
+.edit-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid blue;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  gap: 10px;
+  width: 300px;
+  /*  */
+  position: relative;
+  top: 3rem;
+}
+.edit-nav {
+  display: flex;
+  justify-content: space-between;
+}
+img {
+  width: 40px;
+  height: 40px;
+}
+.edit-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+.custom-file-input {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+.user-profile-info {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+label {
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+input {
+  padding: 5px 10px;
+}

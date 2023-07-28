@@ -1,17 +1,50 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import LeftPanel from "../../components/LeftPanel/LeftPanel";
 import RightPanel from "../../components/RightPanel/RightPanel";
 import "./Profile.css";
 import { AuthContext } from "../../context/AuthContext";
 import { DataContext } from "../../context/DataContext";
+import { v4 as uuid } from "uuid";
+import { editUserHandler } from "../../services/DataServices";
 
 const Profile = () => {
   const { currentUser, loginToken, logoutHandler } = useContext(AuthContext);
-  const { dataState } = useContext(DataContext);
+  const { dataState, dataDispatch } = useContext(DataContext);
   const loggedInUser = dataState.users.find(
     (user) => user.username === currentUser.username
   );
+
+  const [isDialogOpen, setDialogOpen] = useState(false);
+
+  const handleButtonClick = () => {
+    setDialogOpen(true);
+    setUserDetails({ ...loggedInUser });
+  };
+
+  const handleClose = () => {
+    setDialogOpen(false);
+  };
+  const handleUpdateProfile = () => {
+    console.log(userDetails);
+    editUserHandler(userDetails, loginToken, dataDispatch);
+    setDialogOpen(false);
+  };
+
+  const [userDetails, setUserDetails] = useState({
+    firstName: "",
+    lastName: "",
+    password: "",
+    bio: "",
+    avatarUrl: "",
+    website: "",
+  });
+
+  const uploadFileHandler = (e) => {
+    const file = e.target.files[0];
+    setUserDetails({ ...userDetails, avatarUrl: URL.createObjectURL(file) });
+  };
+
   return (
     <div>
       <div className="main-container">
@@ -23,6 +56,118 @@ const Profile = () => {
         </div>
         <div className="content">
           <div className="profile-container">
+            {isDialogOpen && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <div className="edit-container">
+                  <div className="edit-nav">
+                    <button onClick={handleClose}>X</button>
+                    <strong>Edit Profile</strong>
+                    <button onClick={handleUpdateProfile}>Update</button>
+                  </div>
+                  <div className="edit-img">
+                    <img
+                      className="avatar"
+                      src={userDetails?.avatarUrl}
+                      alt=""
+                    />
+                    <label for="myFileInput" class="custom-file-input">
+                      Choose a file
+                    </label>
+                    <input
+                      type="file"
+                      id="myFileInput"
+                      class="hidden"
+                      onChange={(e) => uploadFileHandler(e)}
+                    />
+                  </div>
+                  <div className="user-profile-info">
+                    <div className="edit-name">
+                      <label htmlFor="name label">
+                        <div>First Name </div>
+                        <input
+                          type="text"
+                          onChange={(e) =>
+                            setUserDetails({
+                              ...userDetails,
+                              firstName: e.target.value,
+                            })
+                          }
+                          value={userDetails.firstName}
+                        />
+                      </label>
+                      <label htmlFor="name label">
+                        <div>Last Name </div>
+                        <input
+                          type="text"
+                          onChange={(e) =>
+                            setUserDetails({
+                              ...userDetails,
+                              lastName: e.target.value,
+                            })
+                          }
+                          value={userDetails.lastName}
+                        />
+                      </label>
+                      <label htmlFor="name label">
+                        <div>Password </div>
+                        <input
+                          type="text"
+                          onChange={(e) =>
+                            setUserDetails({
+                              ...userDetails,
+                              password: e.target.value,
+                            })
+                          }
+                          value={userDetails.password}
+                        />
+                      </label>
+                    </div>
+                    <div className="edit-bio ">
+                      <label htmlFor="name label">
+                        <div>Bio </div>
+                        <input
+                          type="text"
+                          onChange={(e) =>
+                            setUserDetails({
+                              ...userDetails,
+                              bio: e.target.value,
+                            })
+                          }
+                          value={userDetails.bio}
+                        />
+                      </label>
+                    </div>
+                    <div className="edit-website ">
+                      <label htmlFor="name label">
+                        <div>website </div>
+                        <input
+                          type="text"
+                          onChange={(e) =>
+                            setUserDetails({
+                              ...userDetails,
+                              website: e.target.value,
+                            })
+                          }
+                          value={userDetails.website}
+                        />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
             <div className="user-avatar">
               <img
                 className="profile-img"
@@ -41,7 +186,9 @@ const Profile = () => {
                       <div className="user-id">@{loggedInUser?.username}</div>
                     </div>
 
-                    <button className="edit">Edit Profile</button>
+                    <button className="edit" onClick={handleButtonClick}>
+                      Edit Profile
+                    </button>
                     <button onClick={logoutHandler}>LogOut</button>
                   </div>
                 </div>
