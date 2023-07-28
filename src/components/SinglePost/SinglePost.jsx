@@ -16,8 +16,8 @@ import { useNavigate } from "react-router";
 const SinglePost = ({ post }) => {
   const { dataState, dataDispatch } = useContext(DataContext);
   const { currentUser, loginToken } = useContext(AuthContext);
-  const { _id, content, firstName, lastName, userName, mediaUrl, createdAt } =
-    post;
+  // const { post?._id, content, firstName, lastName, userName, mediaUrl, createdAt } =
+  //   post;
 
   const loggedInuser = dataState?.users?.find(
     (user) => user.username === currentUser.username
@@ -33,14 +33,14 @@ const SinglePost = ({ post }) => {
   // console.log(post);
   // console.log(isLiked, "isliked?");
   const handleLike = (_id, loginToken, dataDispatch) => {
-    likePostHandler(_id, loginToken, dataDispatch);
+    likePostHandler(post?._id, loginToken, dataDispatch);
   };
   const handleDislike = (_id, loginToken, dataDispatch) => {
-    disLikePostHandler(_id, loginToken, dataDispatch);
+    disLikePostHandler(post?._id, loginToken, dataDispatch);
   };
 
   const isBookmark = loggedInuser.bookmarks.some(
-    (bookmark) => bookmark._id === _id
+    (bookmark) => bookmark.post?._id === post?._id
   );
 
   const handleBookmark = (_id, loginToken, dataDispatch, loggedInuser) => {
@@ -68,7 +68,7 @@ const SinglePost = ({ post }) => {
 
   const handleEditPost = (_id) => {
     console.log(_id);
-    dataDispatch({ type: "editPost", payload: _id });
+    dataDispatch({ type: "editPost", payload: post?._id });
     setDialogOpen(false);
   };
 
@@ -78,7 +78,7 @@ const SinglePost = ({ post }) => {
   };
   const navigate = useNavigate();
   const handlePostDetails = (_id) => {
-    navigate(`/post/${_id}`);
+    navigate(`/post/${post?._id}`);
   };
 
   return (
@@ -135,14 +135,14 @@ const SinglePost = ({ post }) => {
                   >
                     <ul style={{ listStyleType: "none", padding: 0 }}>
                       <li
-                        onClick={() => handleEditPost(_id)}
+                        onClick={() => handleEditPost(post?._id)}
                         style={{ cursor: "pointer", marginBottom: "8px" }}
                       >
                         Edit
                       </li>
                       <li
                         onClick={() =>
-                          handleDeletePost(post._id, loginToken, dataDispatch)
+                          handleDeletePost(post?._id, loginToken, dataDispatch)
                         }
                         style={{ cursor: "pointer", marginBottom: "8px" }}
                       >
@@ -154,7 +154,10 @@ const SinglePost = ({ post }) => {
               )}
             </div>
           </div>
-          <div className="post-info" onClick={() => handlePostDetails(_id)}>
+          <div
+            className="post-info"
+            onClick={() => handlePostDetails(post?._id)}
+          >
             <div className="post-content">
               <div>{post?.content}</div>
             </div>
@@ -170,7 +173,7 @@ const SinglePost = ({ post }) => {
               <span
                 className="cursor"
                 onClick={() =>
-                  handleDislike(post._id, loginToken, dataDispatch)
+                  handleDislike(post?._id, loginToken, dataDispatch)
                 }
               >
                 <i
@@ -182,7 +185,7 @@ const SinglePost = ({ post }) => {
             ) : (
               <span
                 className="cursor"
-                onClick={() => handleLike(post._id, loginToken, dataDispatch)}
+                onClick={() => handleLike(post?._id, loginToken, dataDispatch)}
               >
                 <i
                   class="fa-regular fa-heart fa-2xl"
@@ -203,7 +206,7 @@ const SinglePost = ({ post }) => {
                 className="cursor"
                 onClick={() =>
                   handleRemoveBookmark(
-                    _id,
+                    post?._id,
                     loginToken,
                     dataDispatch,
                     loggedInuser
@@ -219,7 +222,12 @@ const SinglePost = ({ post }) => {
               <span
                 className="cursor"
                 onClick={() =>
-                  handleBookmark(_id, loginToken, dataDispatch, loggedInuser)
+                  handleBookmark(
+                    post?._id,
+                    loginToken,
+                    dataDispatch,
+                    loggedInuser
+                  )
                 }
               >
                 <i
