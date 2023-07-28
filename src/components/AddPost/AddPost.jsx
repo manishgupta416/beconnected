@@ -90,8 +90,8 @@ const AddPost = () => {
         </div>
         <div className="add-content">
           <div className="add-input">
-            <input
-              className="add-txt"
+            <textarea
+              className="add-txt txt-area"
               type="text"
               name=""
               id=""
