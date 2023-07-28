@@ -7,7 +7,7 @@ import {
   editPostHandler,
 } from "../../services/DataServices";
 
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuid } from "uuid";
 
 const AddPost = () => {
   const { dataState, dataDispatch, addPostBtn, setAddPostBtn } =
@@ -15,11 +15,11 @@ const AddPost = () => {
   const { currentUser, loginToken } = useContext(AuthContext);
 
   const [postDetails, setPostDetails] = useState({
-    _id: uuidv4(),
+    _id: uuid(),
     content: "",
     mediaUrl: "",
     comments: [],
-    ...currentUser,
+    // ...currentUser,
   });
 
   const uploadFileHandler = (e) => {
@@ -42,15 +42,8 @@ const AddPost = () => {
           dataDispatch
         );
 
-        dataDispatch({ type: "EDIT_POST", payload: null });
+        dataDispatch({ type: "editPost", payload: null });
         alert("Post Updated!");
-        setPostDetails({
-          _id: uuidv4(),
-          content: "",
-          mediaUrl: "",
-          comments: [],
-          ...currentUser,
-        });
       } else {
         alert("Please add something to post ");
       }
@@ -58,6 +51,14 @@ const AddPost = () => {
       //adding new post
       if (postDetails.content.length > 0 || postDetails.mediaUrl) {
         createNewPostHandler(postDetails, loginToken, dataDispatch);
+        dataDispatch({ type: "editPost", payload: null });
+        setPostDetails({
+          _id: uuid(),
+          content: "",
+          mediaUrl: "",
+          comments: [],
+          // ...currentUser, //because of this create handlr not wrk
+        });
       } else {
         alert("Please add something to post");
       }
@@ -72,11 +73,11 @@ const AddPost = () => {
       setPostDetails(postData);
     } else {
       setPostDetails({
-        _id: uuidv4(),
+        _id: uuid(),
         content: "",
         mediaUrl: "",
         comments: [],
-        ...currentUser,
+        // ...currentUser, //because of this create handlr not wrk
       });
     }
   }, [dataState.postId]);
