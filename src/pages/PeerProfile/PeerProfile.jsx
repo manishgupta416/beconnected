@@ -15,7 +15,9 @@ const PeerProfile = () => {
     (user) => user.username === username
   );
 
-  const userPosts = dataState.posts.find((post) => post.username === username);
+  const userPosts = dataState.posts.filter(
+    (post) => post.username === username
+  );
   return (
     <div>
       {" "}
@@ -75,7 +77,9 @@ const PeerProfile = () => {
               </div>
             </div>
           </div>
-          <SinglePost post={userPosts} />
+          {userPosts.map((post) => (
+            <SinglePost post={post} />
+          ))}
         </div>
         <div className="right-side">
           <RightPanel />
