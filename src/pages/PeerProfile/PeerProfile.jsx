@@ -6,6 +6,7 @@ import { useParams } from "react-router";
 import { useContext } from "react";
 import { DataContext } from "../../context/DataContext";
 import "./PeerProfile.css";
+import SinglePost from "../../components/SinglePost/SinglePost";
 
 const PeerProfile = () => {
   const { username } = useParams();
@@ -13,6 +14,8 @@ const PeerProfile = () => {
   const userDetails = dataState.users.find(
     (user) => user.username === username
   );
+
+  const userPosts = dataState.posts.find((post) => post.username === username);
   return (
     <div>
       {" "}
@@ -72,6 +75,7 @@ const PeerProfile = () => {
               </div>
             </div>
           </div>
+          <SinglePost post={userPosts} />
         </div>
         <div className="right-side">
           <RightPanel />
