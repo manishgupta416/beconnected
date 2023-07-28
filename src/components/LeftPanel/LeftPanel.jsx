@@ -42,7 +42,7 @@ const LeftPanel = () => {
         <button className="btn-create-post" onClick={handleAddPost}>
           Create New Post
         </button>
-        <div className="user-profile">
+        <NavLink className="user-profile" to={"/profile"}>
           <div className="user-img">
             <img className="user-img" src={currentUser.avatarUrl} alt="" />
           </div>
@@ -52,7 +52,7 @@ const LeftPanel = () => {
             </div>
             <div className="user-email">@{currentUser.username}</div>
           </div>
-        </div>
+        </NavLink>
       </div>
       {isDialogOpen && (
         <div

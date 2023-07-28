@@ -37,7 +37,9 @@
   gap: 25px;
   margin: 15px 0;
   padding: 10px 0px;
+  border-top: 1px solid #1b74e4;
   border-bottom: 1px solid #1b74e4;
+  cursor: pointer;
 }
 .user-img {
   width: 50px;
