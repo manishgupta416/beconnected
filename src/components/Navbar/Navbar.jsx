@@ -25,7 +25,7 @@ const Navbar = () => {
     <>
       <div className="nav">
         <div className="nav-left">
-          <NavLink to="/" className="nav-left-content">
+          <NavLink to="/home" className="nav-left-content">
             <img src={icon} alt="" className="nav-img" />
             <h2 className="nav-header">beconnected</h2>
           </NavLink>
@@ -76,12 +76,12 @@ const Navbar = () => {
                   >
                     Logout
                   </li>
-                  <li
-                    onClick={() => handleProfile()}
+                  <NavLink
+                    to={"/profile"}
                     style={{ cursor: "pointer", marginBottom: "8px" }}
                   >
                     Profile
-                  </li>
+                  </NavLink>
                 </ul>
               </div>
             </div>
