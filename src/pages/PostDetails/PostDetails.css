@@ -1,17 +1,19 @@
 .profile-details-container {
   display: flex;
-  width: 600px;
+  width: 550px;
   flex-direction: column;
   gap: 10px;
-  border-left: 1px solid blue;
-  border-right: 1px solid blue;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin: 0 5px;
-  padding: 0 5px;
+  /* border-right: 1px solid blue;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 0 5px;
+   padding: 0 5px; */
 }
 .reply-container {
   display: flex;
   gap: 15px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
 }
 .input-comment-container {
   display: flex;

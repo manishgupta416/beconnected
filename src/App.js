@@ -11,6 +11,7 @@ import Explore from "./pages/Explore/Explore";
 import Bookmarks from "./pages/Bookmarks/Bookmarks";
 import Profile from "./pages/Profile/Profile";
 import PeerProfile from "./pages/PeerProfile/PeerProfile";
+import PostDetails from "./pages/PostDetails/PostDetails";
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/bookmarks" element={<Bookmarks />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/:username" element={<PeerProfile />} />
+        <Route path="/post/:postId" element={<PostDetails />} />
       </Routes>
     </>
   );

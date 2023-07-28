@@ -11,6 +11,7 @@ import {
   removeBookMarkPostHandler,
 } from "../../services/DataServices";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const SinglePost = ({ post }) => {
   const { dataState, dataDispatch } = useContext(DataContext);
@@ -75,6 +76,11 @@ const SinglePost = ({ post }) => {
     deletePostHandler(_id, loginToken, dataDispatch);
     setDialogOpen(false);
   };
+  const navigate = useNavigate();
+  const handlePostDetails = (_id) => {
+    navigate(`/post/${_id}`);
+  };
+
   return (
     <div>
       <div className="post-container">
@@ -148,14 +154,17 @@ const SinglePost = ({ post }) => {
               )}
             </div>
           </div>
-          <div className="post-content">
-            <div>{post?.content}</div>
-          </div>
-          {post?.mediaUrl && (
-            <div className="post-img">
-              <img className="post-img" src={post?.mediaUrl} alt="" />
+          <div className="post-info" onClick={() => handlePostDetails(_id)}>
+            <div className="post-content">
+              <div>{post?.content}</div>
             </div>
-          )}
+            {post?.mediaUrl && (
+              <div className="post-img">
+                <img className="post-img" src={post?.mediaUrl} alt="" />
+              </div>
+            )}
+          </div>
+
           <div className="task-btn">
             {isLiked ? (
               <span
