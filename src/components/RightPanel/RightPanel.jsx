@@ -3,6 +3,7 @@ import "./RightPanel.css";
 import { AuthContext } from "../../context/AuthContext";
 import { DataContext } from "../../context/DataContext";
 import { followUserHandler } from "../../services/DataServices";
+import { useNavigate } from "react-router";
 
 const RightPanel = () => {
   const { dataState, dataDispatch } = useContext(DataContext);
@@ -23,6 +24,10 @@ const RightPanel = () => {
       user?.username !== currentUser?.username &&
       !followedUsers.includes(user?.username)
   );
+  const navigate = useNavigate();
+  const navigateToProfile = (username) => {
+    navigate(`/profile/${username}`);
+  };
 
   return (
     <>
@@ -41,14 +46,20 @@ const RightPanel = () => {
         {suggestedUsers?.map((user) => (
           <div className="sp-evn">
             <div className="user-profile flex-even">
-              <div className="user-img">
+              <div
+                className="user-img"
+                onClick={() => navigateToProfile(user?.username)}
+              >
                 <img
                   className="user-img"
                   src={user?.avatarUrl}
                   alt={user?.firstName}
                 />{" "}
               </div>
-              <div className="user-details flex-even">
+              <div
+                className="user-details flex-even"
+                onClick={() => navigateToProfile(user?.username)}
+              >
                 <div className="user-name">
                   {user?.firstName}
                   {user?.lastName}
