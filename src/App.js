@@ -7,6 +7,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PageNotFound from "./pages/404/404";
+import Explore from "./pages/Explore/Explore";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/home" element={<Home />} />
         <Route path="*" element={<PageNotFound />} />
+        <Route path="/explore" element={<Explore />} />
       </Routes>
     </>
   );

@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.main-container {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-areas:
+    "nav nav nav"
+    "left-side content right-side"
+    "left-side content right-side"
+    "left-side content right-side"
+    "left-side content right-side";
+  grid-template-rows: 55px repeat(4, 1fr);
+  grid-template-columns: 296px 592px 200px;
+  /* height: 100vh; */
+  background-color: whitesmoke;
+}
+
+.nav {
+  grid-area: nav;
+  background-color: whitesmoke;
+  margin-bottom: 0;
+}
+
+.left-side {
+  grid-area: left-side;
+  background-color: whitesmoke;
+  position: relative;
+}
+
+.content {
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border: 2px solid;
+  height: auto;
+  background-color: white;
+}
+
+.right-side {
+  grid-area: right-side;
+  background-color: whitesmoke;
+  position: relative;
+}
