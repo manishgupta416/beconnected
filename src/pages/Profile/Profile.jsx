@@ -7,6 +7,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { DataContext } from "../../context/DataContext";
 import { v4 as uuid } from "uuid";
 import { editUserHandler } from "../../services/DataServices";
+import SinglePost from "../../components/SinglePost/SinglePost";
 
 const Profile = () => {
   const { currentUser, loginToken, logoutHandler } = useContext(AuthContext);
@@ -45,6 +46,9 @@ const Profile = () => {
     setUserDetails({ ...userDetails, avatarUrl: URL.createObjectURL(file) });
   };
 
+  const loggedInUserPosts = dataState.posts.filter(
+    (post) => post.username === loggedInUser.username
+  );
   return (
     <div>
       <div className="main-container">
@@ -220,6 +224,9 @@ const Profile = () => {
               </div>
             </div>
           </div>
+          {loggedInUserPosts.map((post) => (
+            <SinglePost post={post} />
+          ))}
         </div>
         <div className="right-side">
           <RightPanel />
