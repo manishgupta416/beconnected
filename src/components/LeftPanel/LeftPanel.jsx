@@ -24,7 +24,7 @@ const LeftPanel = () => {
             <div className="home">Home</div>
           </NavLink>
 
-          <NavLink className="flex-row">
+          <NavLink className="flex-row" to={"/bookmarks"}>
             <i class="fa-regular fa-bookmark" style={{ color: "#1b74e4" }}></i>
             <div className="bookmark">Bookmark</div>
           </NavLink>

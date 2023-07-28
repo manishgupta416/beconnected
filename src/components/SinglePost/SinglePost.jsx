@@ -168,7 +168,7 @@ const SinglePost = ({ post }) => {
                   class="fa-solid fa-heart fa-2xl"
                   style={{ color: "blue" }}
                 ></i>
-                <span> {post.likes.likeCount} </span>
+                <span> {post?.likes?.likeCount} </span>
               </span>
             ) : (
               <span
@@ -179,7 +179,7 @@ const SinglePost = ({ post }) => {
                   class="fa-regular fa-heart fa-2xl"
                   style={{ color: "blue" }}
                 ></i>
-                <span> {post.likes.likeCount} </span>
+                <span> {post?.likes?.likeCount} </span>
               </span>
             )}
 
