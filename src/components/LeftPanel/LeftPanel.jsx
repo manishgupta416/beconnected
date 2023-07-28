@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./LeftPanel.css";
 import { AuthContext } from "../../context/AuthContext";
 import AddPost from "../AddPost/AddPost";
@@ -14,11 +14,12 @@ const LeftPanel = () => {
   const handleAddPost = () => {
     setDialogOpen(true);
   };
+  const navigate = useNavigate();
   return (
     <div>
       <div className="sidebar1">
         <div className="side-links">
-          <NavLink className="flex-row">
+          <NavLink className="flex-row" to={"/home"}>
             <i class="fa-sharp fa-light fa-house-user"></i>
             <div className="home">Home</div>
           </NavLink>
@@ -28,7 +29,7 @@ const LeftPanel = () => {
             <div className="bookmark">Bookmark</div>
           </NavLink>
 
-          <NavLink className="flex-row">
+          <NavLink className="flex-row" to={"/explore"}>
             <i class="fa-regular fa-compass" style={{ color: "#1b74e4" }}></i>{" "}
             <div className="explore">Explore</div>
           </NavLink>
