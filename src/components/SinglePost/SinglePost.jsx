@@ -67,7 +67,10 @@ const SinglePost = ({ post }) => {
 
   const handleEditPost = (_id) => {
     console.log(_id);
+    dataDispatch({ type: "editPost", payload: _id });
+    setDialogOpen(false);
   };
+
   const handleDeletePost = (_id, loginToken, dataDispatch) => {
     deletePostHandler(_id, loginToken, dataDispatch);
     setDialogOpen(false);

@@ -80,7 +80,7 @@ export const getPostByUserName = async (username) => {
   }
 };
 
-export const createNewPostHandler = async (post, loginToken) => {
+export const createNewPostHandler = async (post, loginToken, dataDispatch) => {
   try {
     const response = await axios.post(
       "/api/posts",
@@ -91,8 +91,9 @@ export const createNewPostHandler = async (post, loginToken) => {
         },
       }
     );
-    if (response.status === 200) {
+    if (response.status === 200 || response.status === 201) {
       console.log(response);
+      dataDispatch({ type: "addNewPost", payload: response.data.posts });
     }
   } catch (error) {
     console.error(error);
@@ -119,7 +120,12 @@ export const deletePostHandler = async (postId, loginToken, dataDispatch) => {
   }
 };
 
-export const editPostHandler = async (postId, postData, loginToken) => {
+export const editPostHandler = async (
+  postId,
+  postData,
+  loginToken,
+  dataDispatch
+) => {
   try {
     const response = await axios.post(
       `/api/posts/edit/${postId}`,
@@ -131,8 +137,9 @@ export const editPostHandler = async (postId, postData, loginToken) => {
         },
       }
     );
-    if (response.status === 200) {
+    if (response.status === 200 || response.status === 201) {
       console.log(response);
+      dataDispatch({ type: "updatedPosts", payload: response.data.posts });
     }
   } catch (error) {
     console.error(error);

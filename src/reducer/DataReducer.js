@@ -1,6 +1,7 @@
 export const initialState = {
   posts: [],
   users: [],
+  postId: null,
 };
 
 export const DataReducer = (state, action) => {
@@ -31,6 +32,13 @@ export const DataReducer = (state, action) => {
       };
     case "deletePost":
       return { ...state, posts: [...action.payload] };
+
+    case "addNewPost":
+      return { ...state, posts: [...action.payload] };
+    case "editPost":
+      return { ...state, postId: action.payload };
+    case "updatedPosts":
+      return { ...state, posts: action.payload };
     default:
       return { ...state };
   }

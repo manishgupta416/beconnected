@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { DataContext } from "../../context/DataContext";
 import { AuthContext } from "../../context/AuthContext";
 import { posts } from "../../backend/db/posts";
+import AddPost from "../../components/AddPost/AddPost";
 
 const Home = () => {
   const { dataState, dataDispatch } = useContext(DataContext);
@@ -36,6 +37,7 @@ const Home = () => {
         <LeftPanel />
       </div>
       <div className="content">
+        <AddPost />
         {feedPosts?.map((post) => (
           <SinglePost post={post} key={post._id} />
         ))}
