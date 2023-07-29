@@ -37,7 +37,7 @@ const Home = () => {
         <LeftPanel />
       </div>
       <div className="content">
-        <AddPost />
+        {/* <AddPost /> */}
         {feedPosts?.map((post) => (
           <SinglePost post={post} key={post._id} />
         ))}

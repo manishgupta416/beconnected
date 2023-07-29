@@ -13,7 +13,7 @@ const AddPost = ({ onClose }) => {
   const { dataState, dataDispatch, addPostBtn, setAddPostBtn } =
     useContext(DataContext);
   const { currentUser, loginToken } = useContext(AuthContext);
-
+  const [showEditPopup, setShowEditPopup] = useState(false);
   const [postDetails, setPostDetails] = useState({
     _id: uuid(),
     content: "",
@@ -44,6 +44,7 @@ const AddPost = ({ onClose }) => {
 
         dataDispatch({ type: "editPost", payload: null });
         alert("Post Updated!");
+        onClose();
       } else {
         alert("Please add something to post ");
       }
@@ -59,6 +60,7 @@ const AddPost = ({ onClose }) => {
           comments: [],
           // ...currentUser, //because of this create handlr not wrk
         });
+        onClose();
       } else {
         alert("Please add something to post");
       }
