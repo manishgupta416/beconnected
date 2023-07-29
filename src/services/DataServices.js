@@ -353,7 +353,6 @@ export const deleteCommentHandler = async (
   try {
     const response = await axios.delete(
       `/api/comments/delete/${postId}/${commentId}`,
-      { commentData },
       {
         headers: {
           authorization: loginToken,
