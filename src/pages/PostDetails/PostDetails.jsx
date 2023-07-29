@@ -131,7 +131,9 @@ const PostDetails = () => {
                       className="sort-icon cursor"
                       onClick={() => handleButtonClick(comment._id)}
                     >
-                      <i class="fa-solid fa-list "></i>
+                      {comment.username === loggedInuser.username && (
+                        <i class="fa-solid fa-list "></i>
+                      )}
                     </div>
                   </div>
 
