@@ -9,7 +9,7 @@ import {
 
 import { v4 as uuid } from "uuid";
 
-const AddPost = () => {
+const AddPost = ({ onClose }) => {
   const { dataState, dataDispatch, addPostBtn, setAddPostBtn } =
     useContext(DataContext);
   const { currentUser, loginToken } = useContext(AuthContext);
@@ -84,11 +84,13 @@ const AddPost = () => {
   return (
     <div>
       {" "}
-      <div className="add-container">
-        <div className="avatar">
+      <div className="add-container popup-background flex">
+        <div className="avatar flx-space">
           <img className="avatar" src={currentUser.avatarUrl} alt="" />
+          <button onClick={onClose}>Close</button>
         </div>
-        <div className="add-content">
+
+        <div className="add-content popup-content">
           <div className="add-input">
             <textarea
               className="add-txt txt-area"

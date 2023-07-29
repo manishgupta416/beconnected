@@ -66,6 +66,10 @@ button {
   gap: 10px;
   width: 100%;
   height: 100%;
+  display: flex;
+  gap: 10px;
+  width: 234px;
+  height: 137px;
 }
 .add-img-preview {
   display: flex;
@@ -83,4 +87,39 @@ button {
 .txt-area {
   width: 476px;
   height: 130px;
+}
+/* edit csss */
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+/* Add this CSS to your stylesheets */
+
+.popup-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+.flx-space {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.flex {
+  display: flex;
+  flex-direction: column;
 }

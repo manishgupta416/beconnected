@@ -12,6 +12,7 @@ import {
 } from "../../services/DataServices";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import AddPost from "../AddPost/AddPost";
 
 const SinglePost = ({ post }) => {
   const { dataState, dataDispatch } = useContext(DataContext);
@@ -70,6 +71,7 @@ const SinglePost = ({ post }) => {
     console.log(_id);
     dataDispatch({ type: "editPost", payload: post?._id });
     setDialogOpen(false);
+    setShowEditPopup(true);
   };
 
   const handleDeletePost = (_id, loginToken, dataDispatch) => {
@@ -80,6 +82,9 @@ const SinglePost = ({ post }) => {
   const handlePostDetails = (_id) => {
     navigate(`/post/${post?._id}`);
   };
+  const [showEditPopup, setShowEditPopup] = useState(false);
+
+  const handleEditClick = () => {};
 
   return (
     <div>
@@ -151,6 +156,9 @@ const SinglePost = ({ post }) => {
                     </ul>
                   </div>
                 </div>
+              )}
+              {showEditPopup && (
+                <AddPost onClose={() => setShowEditPopup(false)} />
               )}
             </div>
           </div>
