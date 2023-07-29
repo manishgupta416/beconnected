@@ -39,22 +39,22 @@ const SinglePost = ({ post }) => {
     disLikePostHandler(post?._id, loginToken, dataDispatch);
   };
 
-  const isBookmark = loggedInuser.bookmarks.some(
-    (bookmark) => bookmark.post?._id === post?._id
+  const isBookmark = loggedInuser?.bookmarks.some(
+    (postId) => post?._id === postId
   );
 
-  const handleBookmark = (_id, loginToken, dataDispatch, loggedInuser) => {
-    bookMarkPostHandler(_id, loginToken, dataDispatch, loggedInuser);
+  const handleBookmark = () => {
+    bookMarkPostHandler(post?._id, loginToken, dataDispatch, loggedInuser);
   };
-  const handleRemoveBookmark = (
-    _id,
-    loginToken,
-    dataDispatch,
-    loggedInuser
-  ) => {
-    removeBookMarkPostHandler(_id, loginToken, dataDispatch, loggedInuser);
+  const handleRemoveBookmark = () => {
+    removeBookMarkPostHandler(
+      post?._id,
+      loginToken,
+      dataDispatch,
+      loggedInuser
+    );
   };
-  // console.log(loggedInuser, "book");
+  console.log(loggedInuser, "lg-book");
 
   const [isDialogOpen, setDialogOpen] = useState(false);
 
@@ -202,34 +202,14 @@ const SinglePost = ({ post }) => {
               ></i>
             </span>
             {isBookmark ? (
-              <span
-                className="cursor"
-                onClick={() =>
-                  handleRemoveBookmark(
-                    post?._id,
-                    loginToken,
-                    dataDispatch,
-                    loggedInuser
-                  )
-                }
-              >
+              <span className="cursor" onClick={handleRemoveBookmark}>
                 <i
                   class="fa-solid fa-bookmark fa-2xl"
                   style={{ color: "blue" }}
                 ></i>
               </span>
             ) : (
-              <span
-                className="cursor"
-                onClick={() =>
-                  handleBookmark(
-                    post?._id,
-                    loginToken,
-                    dataDispatch,
-                    loggedInuser
-                  )
-                }
-              >
+              <span className="cursor" onClick={handleBookmark}>
                 <i
                   class="fa-regular fa-bookmark fa-2xl"
                   style={{ color: "blue" }}

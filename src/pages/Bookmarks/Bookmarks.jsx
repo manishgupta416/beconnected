@@ -13,6 +13,10 @@ const Bookmarks = () => {
     (user) => user.username === currentUser.username
   );
   console.log(loggedInUser, "bookm");
+
+  const bookmarkedPost = dataState.posts.filter((post) =>
+    loggedInUser.bookmarks.find((bp) => post._id === bp)
+  );
   return (
     <div>
       <div className="main-container">
@@ -23,7 +27,7 @@ const Bookmarks = () => {
           <LeftPanel />
         </div>
         <div className="content">
-          {loggedInUser.bookmarks.map((post) => (
+          {bookmarkedPost.map((post) => (
             <SinglePost post={post} key={post._id} />
           ))}
         </div>

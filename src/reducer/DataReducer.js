@@ -26,10 +26,25 @@ export const DataReducer = (state, action) => {
         ...state,
         users: state.users.map((user) =>
           user.username === action.payload.user.username
-            ? { ...user, bookmarks: [...action.payload.bookmarks] }
+            ? { ...user, bookmarks: action.payload.bookmarks }
             : user
         ),
       };
+    // case "removeFromBookmark":
+    //   console.log(action.payload.user.username, "added in Book");
+    //   return {
+    //     ...state,
+    //     users: state.users.map((user) =>
+    //       user.username === action.payload.user.username
+    //         ? {
+    //             ...user,
+    //             bookmarks: state.bookmarks.filter(
+    //               (bp) => action.payload.postId !== bp
+    //             ),
+    //           }
+    //         : user
+    //     ),
+    //   };
     case "deletePost":
       return { ...state, posts: [...action.payload] };
 

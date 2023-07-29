@@ -259,7 +259,7 @@ export const removeBookMarkPostHandler = async (
     if (response.status === 200 || response.status === 201) {
       console.log(response);
       dataDispatch({
-        type: "removePostFromBookmark",
+        type: "addPostToBookmark",
         payload: { bookmarks: response.data.bookmarks, user: loggedInuser },
       });
     }
