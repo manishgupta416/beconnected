@@ -337,6 +337,7 @@ export const addCommentHandler = async (
     );
     if (response.status === 200 || response.status === 201) {
       console.log(response);
+      dataDispatch({ type: "addComment", payload: response.data.posts });
     }
   } catch (error) {
     console.error(error);
@@ -361,6 +362,7 @@ export const deleteCommentHandler = async (
     );
     if (response.status === 200 || response.status === 201) {
       console.log(response);
+      dataDispatch({ type: "deleteComment", payload: response.data.posts });
     }
   } catch (error) {
     console.error(error);

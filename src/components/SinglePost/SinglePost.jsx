@@ -14,6 +14,7 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import AddPost from "../AddPost/AddPost";
+import AddComment from "../AddComment/AddComment";
 
 const SinglePost = ({ post }) => {
   const { dataState, dataDispatch } = useContext(DataContext);
@@ -88,8 +89,12 @@ const SinglePost = ({ post }) => {
   const navigateToProfile = (username) => {
     navigate(`/profile/${username}`);
   };
+  const [showCommentPopup, setShowCommentPopup] = useState(false);
 
-  addCommentHandler(1, "hii", loginToken, dataDispatch);
+  // addCommentHandler(1, "hii", loginToken, dataDispatch);//for infinite loop due to re -rendring
+  const handleAddComment = () => {
+    setShowCommentPopup(true);
+  };
   return (
     <div>
       <div className="post-container">
@@ -215,12 +220,22 @@ const SinglePost = ({ post }) => {
               </span>
             )}
 
-            <span className="cursor">
+            <span
+              className="cursor"
+              onClick={() => handleAddComment(post?._id)}
+            >
               <i
                 class="fa-regular fa-comment fa-2xl "
                 style={{ color: "blue" }}
               ></i>
+              <span> {post?.comments?.length}</span>
             </span>
+            {showCommentPopup && (
+              <AddComment
+                onClose={() => setShowCommentPopup(false)}
+                postId={post?._id}
+              />
+            )}
             {isBookmark ? (
               <span className="cursor" onClick={handleRemoveBookmark}>
                 <i
