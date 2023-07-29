@@ -108,7 +108,9 @@ const SinglePost = ({ post }) => {
 
               <div className="post-date">{post?.createdAt.split("T")[0]}</div>
               <div className="sort-icon cursor" onClick={handleButtonClick}>
-                <i class="fa-solid fa-list"></i>
+                {currentUser.username === post?.username && (
+                  <i class="fa-solid fa-list"></i>
+                )}
               </div>
               {isDialogOpen && (
                 <div
