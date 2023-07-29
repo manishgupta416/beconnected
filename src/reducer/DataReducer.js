@@ -72,6 +72,15 @@ export const DataReducer = (state, action) => {
       return { ...state, posts: [...action.payload] };
     case "editComment":
       return { ...state, commentId: action.payload };
+    case "unfollowUser":
+      return {
+        ...state,
+        users: state.users.map((user) =>
+          user.username === action.payload?.username
+            ? { ...user, following: action.payload?.following }
+            : user
+        ),
+      };
     default:
       return { ...state };
   }

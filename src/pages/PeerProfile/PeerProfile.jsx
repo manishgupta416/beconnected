@@ -7,10 +7,20 @@ import { useContext } from "react";
 import { DataContext } from "../../context/DataContext";
 import "./PeerProfile.css";
 import SinglePost from "../../components/SinglePost/SinglePost";
+import {
+  followUserHandler,
+  unfollowUserHandler,
+} from "../../services/DataServices";
+import { AuthContext } from "../../context/AuthContext";
 
 const PeerProfile = () => {
   const { username } = useParams();
-  const { dataState } = useContext(DataContext);
+  const { dataState, dataDispatch } = useContext(DataContext);
+  const { currentUser, loginToken } = useContext(AuthContext);
+  const loggedInUser = dataState.users.find(
+    (user) => user.username === currentUser.username
+  );
+  console.log(loggedInUser, "peerprofile");
   const userDetails = dataState.users.find(
     (user) => user.username === username
   );
@@ -18,6 +28,16 @@ const PeerProfile = () => {
   const userPosts = dataState.posts.filter(
     (post) => post.username === username
   );
+  const isFollowed = loggedInUser.following.some(
+    (user) => user.username === username
+  );
+  const handleUnfollow = (_id, loginToken, dataDispatch) => {
+    unfollowUserHandler(_id, loginToken, dataDispatch);
+  };
+  const handleFollow = (_id, loginToken, dataDispatch) => {
+    followUserHandler(_id, loginToken, dataDispatch);
+  };
+  console.log(userDetails, "peerusrnm");
   return (
     <div>
       {" "}
@@ -47,6 +67,31 @@ const PeerProfile = () => {
                       </div>
                       <div className="user-id">@{userDetails?.username}</div>
                     </div>
+                    {isFollowed ? (
+                      <button
+                        onClick={() =>
+                          handleUnfollow(
+                            userDetails?._id,
+                            loginToken,
+                            dataDispatch
+                          )
+                        }
+                      >
+                        Unfollow
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() =>
+                          handleFollow(
+                            userDetails?._id,
+                            loginToken,
+                            dataDispatch
+                          )
+                        }
+                      >
+                        Follow
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

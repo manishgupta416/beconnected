@@ -285,8 +285,8 @@ export const followUserHandler = async (
         },
       }
     );
-    if (response.status === 200) {
-      console.log(response.data.user, "res");
+    if (response.status === 200 || response.status === 201) {
+      console.log(response, "res follow");
       // {_id: 1, firstName: 'Manish', lastName: 'Gupta', username: 'manishgupta', password: 'manishgupta123', …}avatarUrl: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60"bio: "Passionate software engineer with a love for coding and problem-solving."bookmarks: []createdAt: "2023-07-27T10:39:13+05:30"firstName: "Manish"followers: []following: (2) [{…}, {…}]id: "1"lastName: "Gupta"password: "manishgupta123"updatedAt: "2023-07-27T10:40:27+05:30"username: "manishgupta"website: "https://manishgupta.in/"_id: 1[[Prototype]]: Object 'res'
       dataDispatch({
         type: "followSuggestedUser",
@@ -298,7 +298,11 @@ export const followUserHandler = async (
   }
 };
 
-export const unfollowUserHandler = async (followUserId, loginToken) => {
+export const unfollowUserHandler = async (
+  followUserId,
+  loginToken,
+  dataDispatch
+) => {
   try {
     const response = await axios.post(
       `/api/users/unfollow/${followUserId}`,
@@ -309,8 +313,12 @@ export const unfollowUserHandler = async (followUserId, loginToken) => {
         },
       }
     );
-    if (response.status === 200) {
-      console.log(response);
+    if (response.status === 200 || response.status === 201) {
+      console.log(response, "unfollow");
+      dataDispatch({
+        type: "unfollowUser",
+        payload: response.data.user,
+      });
     }
   } catch (error) {
     console.error(error);
