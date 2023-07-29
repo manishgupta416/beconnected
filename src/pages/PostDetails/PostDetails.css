@@ -46,6 +46,9 @@
 .users-reply {
   display: flex;
   gap: 25px;
+  display: flex;
+  gap: 78px;
+  justify-content: space-evenly;
 }
 .flex-col {
   display: flex;

@@ -8,15 +8,16 @@ import LeftPanel from "../../components/LeftPanel/LeftPanel";
 import RightPanel from "../../components/RightPanel/RightPanel";
 import { AuthContext } from "../../context/AuthContext";
 import AddComment from "../../components/AddComment/AddComment";
+import { deleteCommentHandler } from "../../services/DataServices";
 
 const PostDetails = () => {
   const { postId } = useParams();
-  const { dataState } = useContext(DataContext);
+  const { dataState, dataDispatch } = useContext(DataContext);
+  const { currentUser, loginToken } = useContext(AuthContext);
   const post = dataState.posts.find(
     (post) => post._id.toString() === postId.toString()
   );
   console.log(post, "clickedpost in postdetail");
-  const { currentUser, loginToken } = useContext(AuthContext);
 
   const loggedInuser = dataState?.users?.find(
     (user) => user.username === currentUser.username
@@ -30,6 +31,35 @@ const PostDetails = () => {
   };
   console.log(dataState.posts, "commentedData");
 
+  const [isDialogOpen, setDialogOpen] = useState(false);
+
+  const handleButtonClick = () => {
+    console.log("clickedddddd");
+    setDialogOpen(true);
+    console.log(isDialogOpen, "isopenn");
+  };
+
+  const handleDialogOutsideClick = () => {
+    setDialogOpen(false);
+  };
+
+  const handleDeleteComment = (
+    postId,
+    commentId,
+    commentData,
+    loginToken,
+    dataDispatch
+  ) => {
+    console.log("deleing");
+    deleteCommentHandler(
+      postId,
+      commentId,
+      commentData,
+      loginToken,
+      dataDispatch
+    );
+    setDialogOpen(false);
+  };
   return (
     <>
       <div className="main-container">
@@ -98,8 +128,67 @@ const PostDetails = () => {
                       </div>
                       <div className="user-comment">{comment.text} </div>
                     </div>
+                    <div
+                      className="sort-icon cursor"
+                      onClick={handleButtonClick}
+                    >
+                      <i class="fa-solid fa-list"></i>
+                    </div>
                   </div>
-                  {/* other users */}
+
+                  {isDialogOpen && (
+                    <div
+                      style={{
+                        position: "relative",
+                        top: 0,
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        // background: "rgba(0, 0, 0, 0.5)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                      onClick={handleDialogOutsideClick}
+                    >
+                      <div
+                        style={{
+                          background: "#fff",
+                          padding: "11px",
+                          borderRadius: "8px",
+                          boxShadow: "0 0 16px rgba(0, 0, 0, 0.3)",
+                          maxWidth: "240px",
+                          position: "absolute",
+                          right: "50px",
+                          bottom: "30px",
+                        }}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <ul style={{ listStyleType: "none", padding: 0 }}>
+                          {/* <li
+                            // onClick={() => handleEditPost(post?._id)}
+                            style={{ cursor: "pointer", marginBottom: "8px" }}
+                          >
+                            Edit
+                          </li> */}
+                          <li
+                            onClick={() =>
+                              handleDeleteComment(
+                                postId,
+                                comment._id,
+                                comment.text,
+                                loginToken,
+                                dataDispatch
+                              )
+                            }
+                            style={{ cursor: "pointer", marginBottom: "8px" }}
+                          >
+                            Delete
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  )}
                   <hr />
                 </div>{" "}
               </div>
