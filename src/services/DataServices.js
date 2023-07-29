@@ -353,7 +353,7 @@ export const deleteCommentHandler = async (
   try {
     const response = await axios.delete(
       `/api/comments/delete/${postId}/${commentId}`,
-
+      { commentData },
       {
         headers: {
           authorization: loginToken,
@@ -363,6 +363,32 @@ export const deleteCommentHandler = async (
     if (response.status === 200 || response.status === 201) {
       console.log(response);
       dataDispatch({ type: "deleteComment", payload: response.data.posts });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const editCommentHandler = async (
+  postId,
+  commentId,
+  commentData,
+  loginToken,
+  dataDispatch
+) => {
+  try {
+    const response = await axios.delete(
+      `/api/comments/edit/${postId}/${commentId}`,
+
+      {
+        headers: {
+          authorization: loginToken,
+        },
+      }
+    );
+    if (response.status === 200 || response.status === 201) {
+      console.log(response);
+      dataDispatch({ type: "editComment", payload: response.data.posts });
     }
   } catch (error) {
     console.error(error);

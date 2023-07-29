@@ -28,6 +28,7 @@ import {
 import {
   addPostCommentHandler,
   deletePostCommentHandler,
+  editPostCommentHandler,
 } from "./backend/controllers/CommentsController";
 
 export function makeServer({ environment = "development" } = {}) {
@@ -78,6 +79,10 @@ export function makeServer({ environment = "development" } = {}) {
       this.delete(
         "/comments/delete/:postId/:commentId",
         deletePostCommentHandler.bind(this)
+      );
+      this.post(
+        "/comments/edit/:postId/:commentId",
+        editPostCommentHandler.bind(this)
       );
 
       // user routes (public)

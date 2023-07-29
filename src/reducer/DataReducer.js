@@ -67,6 +67,8 @@ export const DataReducer = (state, action) => {
       return { ...state, posts: [...action.payload] };
     case "deleteComment":
       return { ...state, posts: [...action.payload] };
+    case "editComment":
+      return { ...state, posts: [...action.payload] };
     default:
       return { ...state };
   }
