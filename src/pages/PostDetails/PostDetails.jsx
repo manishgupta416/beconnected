@@ -31,16 +31,15 @@ const PostDetails = () => {
   };
   console.log(dataState.posts, "commentedData");
 
-  const [isDialogOpen, setDialogOpen] = useState(false);
-
-  const handleButtonClick = () => {
-    console.log("clickedddddd");
-    setDialogOpen(true);
-    console.log(isDialogOpen, "isopenn");
+  const [isDialogOpen, setDialogOpen] = useState(true); //facing prblm it open for all but i want ki jispe click ho sirf uspe hi pop ho
+  const [dialogCommentId, setDialogCommentId] = useState(null);
+  const handleButtonClick = (commentId) => {
+    console.log("clickedddddd", commentId);
+    setDialogCommentId(commentId);
   };
 
   const handleDialogOutsideClick = () => {
-    setDialogOpen(false);
+    setDialogCommentId(null);
   };
 
   const handleDeleteComment = (
@@ -58,7 +57,7 @@ const PostDetails = () => {
       loginToken,
       dataDispatch
     );
-    setDialogOpen(false);
+    setDialogCommentId(null);
   };
   return (
     <>
@@ -97,8 +96,8 @@ const PostDetails = () => {
             </div>
             {post.comments.map((comment) => (
               <div>
-                <div>
-                  <div className="users-reply">
+                <div className="ps-rel">
+                  <div className="users-reply ">
                     <div className="user-img">
                       <img src={comment?.pic} alt="" className="user-img" />
                     </div>
@@ -130,16 +129,16 @@ const PostDetails = () => {
                     </div>
                     <div
                       className="sort-icon cursor"
-                      onClick={handleButtonClick}
+                      onClick={() => handleButtonClick(comment._id)}
                     >
-                      <i class="fa-solid fa-list"></i>
+                      <i class="fa-solid fa-list "></i>
                     </div>
                   </div>
 
-                  {isDialogOpen && (
+                  {dialogCommentId === comment._id && (
                     <div
                       style={{
-                        position: "relative",
+                        position: "absolute",
                         top: 0,
                         bottom: 0,
                         left: 0,
