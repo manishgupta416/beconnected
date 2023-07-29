@@ -6,15 +6,20 @@ import AddPost from "../AddPost/AddPost";
 
 const LeftPanel = () => {
   const { currentUser, loginToken } = useContext(AuthContext);
-  const [isDialogOpen, setDialogOpen] = useState(false);
+  // const [isDialogOpen, setDialogOpen] = useState(false);
 
-  const handleDialogOutsideClick = () => {
-    setDialogOpen(false);
-  };
-  const handleAddPost = () => {
-    setDialogOpen(true);
-  };
+  // const handleDialogOutsideClick = () => {
+  //   setDialogOpen(false);
+  // };
+  // const handleAddPost = () => {
+  //   setDialogOpen(true);
+  // };
   const navigate = useNavigate();
+
+  const [showEditPopup, setShowEditPopup] = useState(false);
+  const handleAddPost = () => {
+    setShowEditPopup(true);
+  };
   return (
     <div>
       <div className="sidebar1">
@@ -54,42 +59,7 @@ const LeftPanel = () => {
           </div>
         </NavLink>
       </div>
-      {isDialogOpen && (
-        <div
-          className="addNewPostDiv"
-          style={{
-            position: "sticky",
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            // background: "rgba(0, 0, 0, 0.5)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          onClick={handleDialogOutsideClick}
-        >
-          <div
-            style={{
-              background: "#fff",
-              padding: "16px",
-              borderRadius: "8px",
-              boxShadow: "0 0 16px rgba(0, 0, 0, 0.3)",
-              maxWidth: "240px",
-              position: "absolute",
-              right: "25px",
-              top: "6px",
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="addNewPostDiv">
-              {" "}
-              <AddPost />
-            </div>
-          </div>
-        </div>
-      )}
+      {showEditPopup && <AddPost onClose={() => setShowEditPopup(false)} />}
     </div>
   );
 };
