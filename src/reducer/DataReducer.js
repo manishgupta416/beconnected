@@ -2,6 +2,7 @@ export const initialState = {
   posts: [],
   users: [],
   postId: null,
+  commentId: null,
 };
 
 export const DataReducer = (state, action) => {
@@ -67,8 +68,10 @@ export const DataReducer = (state, action) => {
       return { ...state, posts: [...action.payload] };
     case "deleteComment":
       return { ...state, posts: [...action.payload] };
-    case "editComment":
+    case "updatedComments":
       return { ...state, posts: [...action.payload] };
+    case "editComment":
+      return { ...state, commentId: action.payload };
     default:
       return { ...state };
   }

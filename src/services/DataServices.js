@@ -377,9 +377,9 @@ export const editCommentHandler = async (
   dataDispatch
 ) => {
   try {
-    const response = await axios.delete(
+    const response = await axios.post(
       `/api/comments/edit/${postId}/${commentId}`,
-
+      { commentData },
       {
         headers: {
           authorization: loginToken,
@@ -388,7 +388,7 @@ export const editCommentHandler = async (
     );
     if (response.status === 200 || response.status === 201) {
       console.log(response);
-      dataDispatch({ type: "editComment", payload: response.data.posts });
+      dataDispatch({ type: "updatedComments", payload: response.data.posts });
     }
   } catch (error) {
     console.error(error);

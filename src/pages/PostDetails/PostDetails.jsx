@@ -8,7 +8,10 @@ import LeftPanel from "../../components/LeftPanel/LeftPanel";
 import RightPanel from "../../components/RightPanel/RightPanel";
 import { AuthContext } from "../../context/AuthContext";
 import AddComment from "../../components/AddComment/AddComment";
-import { deleteCommentHandler } from "../../services/DataServices";
+import {
+  deleteCommentHandler,
+  editCommentHandler,
+} from "../../services/DataServices";
 
 const PostDetails = () => {
   const { postId } = useParams();
@@ -59,6 +62,20 @@ const PostDetails = () => {
     );
     setDialogCommentId(null);
   };
+
+  const handleEditComment = (
+    postId,
+    commentId,
+    commentText,
+    loginToken,
+    dataDispatch
+  ) => {
+    console.log(commentId, "commentId");
+    dataDispatch({ type: "editComment", payload: commentId });
+    setDialogCommentId(null);
+    setShowCommentPopup(true);
+  };
+
   return (
     <>
       <div className="main-container">
@@ -166,12 +183,20 @@ const PostDetails = () => {
                         onClick={(e) => e.stopPropagation()}
                       >
                         <ul style={{ listStyleType: "none", padding: 0 }}>
-                          {/* <li
-                            // onClick={() => handleEditPost(post?._id)}
+                          <li
+                            onClick={() =>
+                              handleEditComment(
+                                postId,
+                                comment._id,
+                                comment.text,
+                                loginToken,
+                                dataDispatch
+                              )
+                            }
                             style={{ cursor: "pointer", marginBottom: "8px" }}
                           >
                             Edit
-                          </li> */}
+                          </li>
                           <li
                             onClick={() =>
                               handleDeleteComment(

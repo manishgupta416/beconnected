@@ -98,7 +98,7 @@ export const editPostCommentHandler = function (schema, request) {
     const { commentData } = JSON.parse(request.requestBody);
     const post = schema.posts.findBy({ _id: postId }).attrs;
     const commentIndex = post.comments.findIndex(
-      (comment) => comment._id === commentId
+      (comment) => comment._id.toString() === commentId.toString()
     );
     if (post.comments[commentIndex].username !== user.username) {
       return new Response(

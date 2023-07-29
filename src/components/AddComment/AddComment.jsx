@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { DataContext } from "../../context/DataContext";
 import { v4 as uuid } from "uuid";
-import { addCommentHandler } from "../../services/DataServices";
+import {
+  addCommentHandler,
+  editCommentHandler,
+} from "../../services/DataServices";
 
 const AddComment = ({ onClose, postId }) => {
   const { currentUser, loginToken } = useContext(AuthContext);
@@ -16,9 +19,36 @@ const AddComment = ({ onClose, postId }) => {
     onClose();
   };
   const addNewCommentHandler = () => {
-    addCommentHandler(postId, commentData, loginToken, dataDispatch);
-    onClose();
+    if (dataState.commentId) {
+      //edit comment
+      if (commentData.length > 0) {
+        editCommentHandler(
+          postId,
+          dataState.commentId.toString(),
+          commentData,
+          loginToken,
+          dataDispatch
+        );
+
+        dataDispatch({ type: "editComment", payload: null });
+        alert("comment Updated!");
+        onClose();
+      } else {
+        alert("Please add something to reply");
+      }
+    } else {
+      //adding new comment
+      if (commentData.length > 0) {
+        addCommentHandler(postId, commentData, loginToken, dataDispatch);
+        dataDispatch({ type: "editComment", payload: null });
+        setCommentData("");
+        onClose();
+      } else {
+        alert("Please add something to reply");
+      }
+    }
   };
+
   return (
     <div>
       <div className="add-container popup-background flex">
