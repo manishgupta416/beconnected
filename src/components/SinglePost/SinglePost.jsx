@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { DataContext } from "../../context/DataContext";
 import { AuthContext } from "../../context/AuthContext";
 import {
+  addCommentHandler,
   bookMarkPostHandler,
   deletePostHandler,
   disLikePostHandler,
@@ -88,6 +89,7 @@ const SinglePost = ({ post }) => {
     navigate(`/profile/${username}`);
   };
 
+  addCommentHandler(1, "hii", loginToken, dataDispatch);
   return (
     <div>
       <div className="post-container">

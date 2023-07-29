@@ -316,3 +316,53 @@ export const unfollowUserHandler = async (followUserId, loginToken) => {
     console.error(error);
   }
 };
+
+// add comments , delete comments
+
+export const addCommentHandler = async (
+  postId,
+  commentData,
+  loginToken,
+  dataDispatch
+) => {
+  try {
+    const response = await axios.post(
+      `/api/comments/add/${postId}`,
+      { commentData },
+      {
+        headers: {
+          authorization: loginToken,
+        },
+      }
+    );
+    if (response.status === 200 || response.status === 201) {
+      console.log(response);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const deleteCommentHandler = async (
+  postId,
+  commentId,
+  commentData,
+  loginToken,
+  dataDispatch
+) => {
+  try {
+    const response = await axios.delete(
+      `/api/comments/delete/${postId}/${commentId}`,
+
+      {
+        headers: {
+          authorization: loginToken,
+        },
+      }
+    );
+    if (response.status === 200 || response.status === 201) {
+      console.log(response);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
