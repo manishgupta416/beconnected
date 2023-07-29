@@ -87,8 +87,8 @@ const AddPost = ({ onClose }) => {
     <div>
       {" "}
       <div className="add-container popup-background flex">
-        <div className="avatar flx-space">
-          <img className="avatar" src={currentUser.avatarUrl} alt="" />
+        <div className="avatar flx-space rm-br">
+          <img className="avatar rm-br" src={currentUser.avatarUrl} alt="" />
           <button onClick={onClose}>Close</button>
         </div>
 

@@ -20,16 +20,19 @@ const Profile = () => {
 
   const handleButtonClick = () => {
     setDialogOpen(true);
+    setShowEditPopup(true);
     setUserDetails({ ...loggedInUser });
   };
 
   const handleClose = () => {
     setDialogOpen(false);
+    setShowEditPopup(false);
   };
   const handleUpdateProfile = () => {
     console.log(userDetails);
     editUserHandler(userDetails, loginToken, dataDispatch);
     setDialogOpen(false);
+    setShowEditPopup(false);
   };
 
   const [userDetails, setUserDetails] = useState({
@@ -49,6 +52,8 @@ const Profile = () => {
   const loggedInUserPosts = dataState.posts.filter(
     (post) => post.username === loggedInUser.username
   );
+
+  const [showEditPopup, setShowEditPopup] = useState(false);
   return (
     <div>
       <div className="main-container">
@@ -60,21 +65,9 @@ const Profile = () => {
         </div>
         <div className="content">
           <div className="profile-container">
-            {isDialogOpen && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <div className="edit-container">
+            {showEditPopup && (
+              <div className="popup-background flex flex-sp">
+                <div className="edit-container popup-content wdth">
                   <div className="edit-nav">
                     <button onClick={handleClose}>X</button>
                     <strong>Edit Profile</strong>

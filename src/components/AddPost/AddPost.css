@@ -123,3 +123,6 @@ button {
   display: flex;
   flex-direction: column;
 }
+.rm-br {
+  border: 0;
+}

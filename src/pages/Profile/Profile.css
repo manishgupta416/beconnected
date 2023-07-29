@@ -110,3 +110,9 @@ label {
 input {
   padding: 5px 10px;
 }
+.flex-sp {
+  justify-content: space-between;
+}
+.wdth {
+  width: 380px;
+}
