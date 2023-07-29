@@ -83,13 +83,18 @@ const AddPost = ({ onClose }) => {
       });
     }
   }, [dataState.postId]);
+
+  const handleClose = () => {
+    dataDispatch({ type: "editPost", payload: null }); //postId null so that it will goes toelse wala part of useEff
+    onClose();
+  };
   return (
     <div>
       {" "}
       <div className="add-container popup-background flex">
         <div className="avatar flx-space rm-br">
           <img className="avatar rm-br" src={currentUser.avatarUrl} alt="" />
-          <button onClick={onClose}>Close</button>
+          <button onClick={handleClose}>Close</button>
         </div>
 
         <div className="add-content popup-content">
