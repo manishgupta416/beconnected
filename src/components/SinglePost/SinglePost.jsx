@@ -84,12 +84,17 @@ const SinglePost = ({ post }) => {
   };
   const [showEditPopup, setShowEditPopup] = useState(false);
 
-  const handleEditClick = () => {};
+  const navigateToProfile = (username) => {
+    navigate(`/profile/${username}`);
+  };
 
   return (
     <div>
       <div className="post-container">
-        <div className="user-img">
+        <div
+          className="user-img"
+          onClick={() => navigateToProfile(post?.username)}
+        >
           <img
             src={userDetails?.avatarUrl}
             alt=""
@@ -99,7 +104,10 @@ const SinglePost = ({ post }) => {
         <div className="post-details" style={{ position: "relative" }}>
           <div className="user-info">
             <div className="user-detail">
-              <div className="loggedIn-details cursor">
+              <div
+                className="loggedIn-details cursor "
+                onClick={() => navigateToProfile(post?.username)}
+              >
                 <div className="user-name">
                   {post?.firstName} {post?.lastName}
                 </div>
