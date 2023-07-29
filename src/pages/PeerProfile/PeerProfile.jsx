@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import LeftPanel from "../../components/LeftPanel/LeftPanel";
 import RightPanel from "../../components/RightPanel/RightPanel";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useContext } from "react";
 import { DataContext } from "../../context/DataContext";
 import "./PeerProfile.css";
@@ -38,6 +38,19 @@ const PeerProfile = () => {
     followUserHandler(_id, loginToken, dataDispatch);
   };
   console.log(userDetails, "peerusrnm");
+  const [isShowListPopup, setShowListPopup] = useState(false);
+  const showFollowerList = () => {
+    setShowListPopup(true);
+  };
+
+  const handleClosePopuo = () => {
+    setShowListPopup(false);
+  };
+
+  const navigate = useNavigate();
+  const navigateToProfile = (username) => {
+    navigate(`/profile/${username}`);
+  };
   return (
     <div>
       {" "}
@@ -67,30 +80,34 @@ const PeerProfile = () => {
                       </div>
                       <div className="user-id">@{userDetails?.username}</div>
                     </div>
-                    {isFollowed ? (
-                      <button
-                        onClick={() =>
-                          handleUnfollow(
-                            userDetails?._id,
-                            loginToken,
-                            dataDispatch
-                          )
-                        }
-                      >
-                        Unfollow
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() =>
-                          handleFollow(
-                            userDetails?._id,
-                            loginToken,
-                            dataDispatch
-                          )
-                        }
-                      >
-                        Follow
-                      </button>
+                    {loggedInUser.username !== userDetails.username && (
+                      <div>
+                        {isFollowed ? (
+                          <button
+                            onClick={() =>
+                              handleUnfollow(
+                                userDetails?._id,
+                                loginToken,
+                                dataDispatch
+                              )
+                            }
+                          >
+                            Unfollow
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() =>
+                              handleFollow(
+                                userDetails?._id,
+                                loginToken,
+                                dataDispatch
+                              )
+                            }
+                          >
+                            Follow
+                          </button>
+                        )}
+                      </div>
                     )}
                   </div>
                 </div>
@@ -112,13 +129,47 @@ const PeerProfile = () => {
                 <div className="follower gap ">
                   {" "}
                   <span className="num">{userDetails?.followers.length}</span>
-                  <span>Follower</span>
+                  <span onClick={showFollowerList}>Follower</span>
                 </div>
                 <div className="following  gap ps-rel">
                   {" "}
                   <span className="num">{userDetails?.following.length}</span>
                   <span className="cursor ">Following</span>
-                </div>
+                </div>{" "}
+                {isShowListPopup && (
+                  <div className="add-container popup-background flex">
+                    <div className="avatar flx-space rm-br">
+                      {/* <img
+                        className="avatar rm-br"
+                        src={userDetails.avatarUrl}
+                        alt=""
+                      /> */}
+                      <button onClick={handleClosePopuo}>X</button>
+                    </div>
+
+                    <div className="add-content popup-content">
+                      {userDetails?.followers.map((user) => (
+                        <div className="flex-rw border-bottom">
+                          <img
+                            className="avatar rm-br cursor"
+                            src={user.avatarUrl}
+                            alt=""
+                            onClick={() => navigateToProfile(user?.username)}
+                          />
+                          <div className="flex-col">
+                            <div className="name">
+                              <span> {user?.firstName}</span>
+                              <span> {user?.firstName}</span>
+                            </div>
+                            <div className="usrnm">
+                              <div> {user?.username}</div>
+                            </div>
+                          </div>{" "}
+                        </div>
+                      ))}{" "}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
