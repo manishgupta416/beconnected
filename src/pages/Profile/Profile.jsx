@@ -62,11 +62,19 @@ const Profile = () => {
 
   const handleClosePopuo = () => {
     setShowListPopup(false);
+    setShowFollowerListPopup(false);
   };
 
   const navigate = useNavigate();
   const navigateToProfile = (username) => {
     navigate(`/profile/${username}`);
+    setShowFollowerListPopup(false);
+  };
+
+  const [isShowFollowerListPopup, setShowFollowerListPopup] = useState(false);
+
+  const showFollowerList = () => {
+    setShowFollowerListPopup(true);
   };
 
   return (
@@ -222,7 +230,44 @@ const Profile = () => {
                 <div className="follower gap ">
                   {" "}
                   <span className="num">{loggedInUser?.followers.length}</span>
-                  <span>Follower</span>
+                  <span onClick={showFollowerList} className="cursor">
+                    Follower
+                  </span>
+                  {/* showing followers list */}
+                  {isShowFollowerListPopup && (
+                    <div className="add-container popup-background flex">
+                      <div className="avatar flx-space rm-br">
+                        {/* <img
+                        className="avatar rm-br"
+                        src={userDetails.avatarUrl}
+                        alt=""
+                      /> */}
+                        <button onClick={handleClosePopuo}>X</button>
+                      </div>
+
+                      <div className="add-content popup-content">
+                        {loggedInUser?.followers.map((user) => (
+                          <div className="flex-rw border-bottom">
+                            <img
+                              className="avatar rm-br cursor"
+                              src={user.avatarUrl}
+                              alt=""
+                              onClick={() => navigateToProfile(user?.username)}
+                            />
+                            <div className="flex-col">
+                              <div className="name">
+                                <span> {user?.firstName}</span>
+                                <span> {user?.firstName}</span>
+                              </div>
+                              <div className="usrnm">
+                                <div> {user?.username}</div>
+                              </div>
+                            </div>{" "}
+                          </div>
+                        ))}{" "}
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="following  gap">
                   {" "}

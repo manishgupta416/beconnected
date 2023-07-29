@@ -39,18 +39,27 @@ const PeerProfile = () => {
   };
   console.log(userDetails, "peerusrnm");
   const [isShowListPopup, setShowListPopup] = useState(false);
+  const [isShowFollowingListPopup, setShowFollowingListPopup] = useState(false);
   const showFollowerList = () => {
     setShowListPopup(true);
   };
 
   const handleClosePopuo = () => {
     setShowListPopup(false);
+    setShowFollowingListPopup(false);
   };
 
   const navigate = useNavigate();
   const navigateToProfile = (username) => {
     navigate(`/profile/${username}`);
+    setShowListPopup(false);
+    setShowFollowingListPopup(false);
   };
+
+  const showFollowingList = () => {
+    setShowFollowingListPopup(true);
+  };
+
   return (
     <div>
       {" "}
@@ -129,12 +138,16 @@ const PeerProfile = () => {
                 <div className="follower gap ">
                   {" "}
                   <span className="num">{userDetails?.followers.length}</span>
-                  <span onClick={showFollowerList}>Follower</span>
+                  <span onClick={showFollowerList} className="cursor">
+                    Follower
+                  </span>
                 </div>
                 <div className="following  gap ps-rel">
                   {" "}
                   <span className="num">{userDetails?.following.length}</span>
-                  <span className="cursor ">Following</span>
+                  <span className="cursor " onClick={showFollowingList}>
+                    Following
+                  </span>
                 </div>{" "}
                 {isShowListPopup && (
                   <div className="add-container popup-background flex">
@@ -149,6 +162,41 @@ const PeerProfile = () => {
 
                     <div className="add-content popup-content">
                       {userDetails?.followers.map((user) => (
+                        <div className="flex-rw border-bottom">
+                          <img
+                            className="avatar rm-br cursor"
+                            src={user.avatarUrl}
+                            alt=""
+                            onClick={() => navigateToProfile(user?.username)}
+                          />
+                          <div className="flex-col">
+                            <div className="name">
+                              <span> {user?.firstName}</span>
+                              <span> {user?.firstName}</span>
+                            </div>
+                            <div className="usrnm">
+                              <div> {user?.username}</div>
+                            </div>
+                          </div>{" "}
+                        </div>
+                      ))}{" "}
+                    </div>
+                  </div>
+                )}
+                {/* showing following list */}
+                {isShowFollowingListPopup && (
+                  <div className="add-container popup-background flex">
+                    <div className="avatar flx-space rm-br">
+                      {/* <img
+                        className="avatar rm-br"
+                        src={userDetails.avatarUrl}
+                        alt=""
+                      /> */}
+                      <button onClick={handleClosePopuo}>X</button>
+                    </div>
+
+                    <div className="add-content popup-content">
+                      {userDetails?.following.map((user) => (
                         <div className="flex-rw border-bottom">
                           <img
                             className="avatar rm-br cursor"
