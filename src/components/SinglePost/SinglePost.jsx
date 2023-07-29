@@ -121,7 +121,15 @@ const SinglePost = ({ post }) => {
                 <div className="user-id">{post?.username}</div>
               </div>
 
-              <div className="post-date">{post?.createdAt.split("T")[0]}</div>
+              <div className="post-date">
+                {new Date(post?.createdAt).toLocaleString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </div>
               <div className="sort-icon cursor" onClick={handleButtonClick}>
                 {currentUser.username === post?.username && (
                   <i class="fa-solid fa-list"></i>
