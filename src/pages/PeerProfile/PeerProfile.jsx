@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import LeftPanel from "../../components/LeftPanel/LeftPanel";
 import RightPanel from "../../components/RightPanel/RightPanel";
@@ -114,10 +114,10 @@ const PeerProfile = () => {
                   <span className="num">{userDetails?.followers.length}</span>
                   <span>Follower</span>
                 </div>
-                <div className="following  gap">
+                <div className="following  gap ps-rel">
                   {" "}
                   <span className="num">{userDetails?.following.length}</span>
-                  <span>Following</span>
+                  <span className="cursor ">Following</span>
                 </div>
               </div>
             </div>

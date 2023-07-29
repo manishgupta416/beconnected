@@ -8,6 +8,7 @@ import { DataContext } from "../../context/DataContext";
 import { v4 as uuid } from "uuid";
 import { editUserHandler } from "../../services/DataServices";
 import SinglePost from "../../components/SinglePost/SinglePost";
+import { useNavigate } from "react-router";
 
 const Profile = () => {
   const { currentUser, loginToken, logoutHandler } = useContext(AuthContext);
@@ -54,6 +55,20 @@ const Profile = () => {
   );
 
   const [showEditPopup, setShowEditPopup] = useState(false);
+  const [isShowListPopup, setShowListPopup] = useState(false);
+  const showFollowingList = () => {
+    setShowListPopup(true);
+  };
+
+  const handleClosePopuo = () => {
+    setShowListPopup(false);
+  };
+
+  const navigate = useNavigate();
+  const navigateToProfile = (username) => {
+    navigate(`/profile/${username}`);
+  };
+
   return (
     <div>
       <div className="main-container">
@@ -212,8 +227,44 @@ const Profile = () => {
                 <div className="following  gap">
                   {" "}
                   <span className="num">{loggedInUser?.following.length}</span>
-                  <span>Following</span>
+                  <span className="cursor" onClick={showFollowingList}>
+                    Following
+                  </span>
                 </div>
+                {isShowListPopup && (
+                  <div className="add-container popup-background flex">
+                    <div className="avatar flx-space rm-br">
+                      {/* <img
+                        className="avatar rm-br"
+                        src={userDetails.avatarUrl}
+                        alt=""
+                      /> */}
+                      <button onClick={handleClosePopuo}>X</button>
+                    </div>
+
+                    <div className="add-content popup-content">
+                      {loggedInUser?.following.map((user) => (
+                        <div className="flex-rw border-bottom">
+                          <img
+                            className="avatar rm-br cursor"
+                            src={user.avatarUrl}
+                            alt=""
+                            onClick={() => navigateToProfile(user?.username)}
+                          />
+                          <div className="flex-col">
+                            <div className="name">
+                              <span> {user?.firstName}</span>
+                              <span> {user?.firstName}</span>
+                            </div>
+                            <div className="usrnm">
+                              <div> {user?.username}</div>
+                            </div>
+                          </div>{" "}
+                        </div>
+                      ))}{" "}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

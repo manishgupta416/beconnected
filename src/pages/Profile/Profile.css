@@ -116,3 +116,20 @@ input {
 .wdth {
   width: 380px;
 }
+.flex-rw {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+.border-bottom {
+  border-bottom: 2px solid blue;
+
+  padding: 2px;
+}
