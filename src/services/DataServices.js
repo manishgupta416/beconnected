@@ -292,6 +292,10 @@ export const followUserHandler = async (
         type: "followSuggestedUser",
         payload: response.data.user,
       });
+      dataDispatch({
+        type: "addInFollower",
+        payload: response.data.followUser,
+      });
     }
   } catch (error) {
     console.error(error);
@@ -318,6 +322,10 @@ export const unfollowUserHandler = async (
       dataDispatch({
         type: "unfollowUser",
         payload: response.data.user,
+      });
+      dataDispatch({
+        type: "removeFollower",
+        payload: response.data.followUser,
       });
     }
   } catch (error) {

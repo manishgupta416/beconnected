@@ -81,6 +81,24 @@ export const DataReducer = (state, action) => {
             : user
         ),
       };
+    case "addInFollower":
+      return {
+        ...state,
+        users: state.users.map((user) =>
+          user.username === action.payload?.username
+            ? { ...user, followers: [...action.payload?.followers] }
+            : user
+        ),
+      };
+    case "removeFollower":
+      return {
+        ...state,
+        users: state.users.map((user) =>
+          user.username === action.payload?.username
+            ? { ...user, followers: [...action.payload?.followers] }
+            : user
+        ),
+      };
     default:
       return { ...state };
   }
