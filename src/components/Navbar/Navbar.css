@@ -58,3 +58,13 @@ li {
 .user-icon {
   padding: 10px;
 }
+.user-popup {
+  background: rgb(255, 255, 255);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 16px;
+  max-width: 249px;
+  position: relative;
+  left: 69px;
+  top: 157px;
+}

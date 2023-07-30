@@ -1,26 +1,50 @@
 import React, { useContext, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import "./Navbar.css";
 import icon from "../../assets/icon.png";
 import { AuthContext } from "../../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { DataContext } from "../../context/DataContext";
 const Navbar = () => {
   const { logoutHandler, currentUser, loginToken } = useContext(AuthContext);
+  const { dataState } = useContext(DataContext);
   const [isDialogOpen, setDialogOpen] = useState(false);
+  const [showUserPopup, setShowUserPopup] = useState(false);
 
   const handleButtonClick = () => {
     setDialogOpen(true);
   };
+  const showUserList = () => {
+    setShowUserPopup(true);
+  };
 
   const handleDialogOutsideClick = () => {
     setDialogOpen(false);
+    setShowUserPopup(false);
   };
-  const handleLogout = () => {
-    // logoutHandler();
+
+  const [input, setInput] = useState("");
+
+  const inputSearch =
+    input.length > 0
+      ? dataState.users.filter(
+          (user) =>
+            user.firstName.toLowerCase().includes(input) ||
+            user.lastName.toLowerCase().includes(input) ||
+            user.username.toLowerCase().includes(input)
+        )
+      : ["Not Found"];
+  console.log(inputSearch);
+
+  const navigate = useNavigate();
+
+  const navigateToProfile = (username) => {
+    navigate(`/profile/${username}`);
+    setShowUserPopup(false);
   };
-  const handleProfile = () => {};
+
   return (
     <>
       <div className="nav">
@@ -31,8 +55,56 @@ const Navbar = () => {
           </NavLink>
         </div>
         <div className="search-container">
-          <input type="text" placeholder="search people" />
+          <input
+            type="text"
+            placeholder="search people"
+            onChange={(e) => setInput(e.target.value.toLowerCase())}
+            onClick={inputSearch.length !== 0 && showUserList}
+          />
         </div>
+        {showUserPopup && (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              // background: "rgba(0, 0, 0, 0.5)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            onClick={handleDialogOutsideClick}
+          >
+            <div className="user-popup" onClick={(e) => e.stopPropagation()}>
+              <ul style={{ listStyleType: "none", padding: 0 }}>
+                {inputSearch?.map((user) => (
+                  <div className="flex-rw border-bottom">
+                    {user?.avatarUrl && (
+                      <img
+                        className="avatar rm-br cursor"
+                        src={user?.avatarUrl}
+                        alt=""
+                        onClick={() => navigateToProfile(user?.username)}
+                      />
+                    )}
+                    <div className="flex-col">
+                      <div className="name">
+                        <span> {user?.firstName}</span>
+                        <span> {user?.firstName}</span>
+                      </div>
+                      <div className="usrnm">
+                        <div> {user?.username}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                {inputSearch.length === 0 && "Not Found"}
+              </ul>
+            </div>
+          </div>
+        )}
         <div className="nav-right">
           <div className="login-btn" onClick={handleButtonClick}>
             <img
