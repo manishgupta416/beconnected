@@ -88,6 +88,86 @@ const AddPost = ({ onClose }) => {
     dataDispatch({ type: "editPost", payload: null }); //postId null so that it will goes toelse wala part of useEff
     onClose();
   };
+  const emojis = [
+    "😀",
+    "😁",
+    "😂",
+    "🤣",
+    "😃",
+    "😄",
+    "🤗",
+    "🤩",
+    "😣",
+    "😥",
+    "😌",
+    "😴",
+    "😫",
+    "😪",
+    "😯",
+    "😝",
+    "😲",
+    "😭",
+    "😢",
+    "😨",
+    "🤪",
+    "😵",
+    "🤡",
+    "🤠",
+    "🥺",
+    "🥳",
+    "😇",
+    "🤧",
+    "🧐",
+    "🤓",
+    "🙀",
+    "😾",
+    "🙈",
+    "😽",
+    "❤",
+    "🧡",
+    "🖤",
+    "🤎",
+    "💗",
+    "💖",
+    "💌",
+    "💕",
+    "💚",
+    "💙",
+    "💌",
+    "🧨",
+    "✨",
+    "🎉",
+    "🎊",
+    "🎃",
+    "🎑",
+    "🎆",
+    "🎈",
+    "🎀",
+    "🎄",
+    "🎁",
+    "🍿",
+    "🧂",
+    "🍕",
+    "🍳",
+    "🥖",
+    "🍗",
+    "🍚",
+  ];
+  const [showEmojiPopup, setShowEmojiPopup] = useState(false);
+  const showEmojiList = () => {
+    setShowEmojiPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowEmojiPopup(false);
+  };
+
+  const handleEmoji = (emoji) => {
+    setPostDetails({
+      ...postDetails,
+      content: `${postDetails?.content}${emoji}`,
+    });
+  };
   return (
     <div>
       {" "}
@@ -132,7 +212,27 @@ const AddPost = ({ onClose }) => {
           </div>
           <div className="add-file-btns">
             <div className="edit-img">
-              <img src="" alt="" />
+              <div onClick={showEmojiList} className="cursor emoji">
+                😃
+              </div>
+              {showEmojiPopup && (
+                <div className="add-container popup-background flex">
+                  <div className="avatar flx-space rm-br">
+                    <button onClick={handleClosePopup}>Close</button>
+                  </div>
+
+                  <div className="emoji-container popup-content ">
+                    {emojis.map((emoji) => (
+                      <span
+                        className="flex-rw cursor"
+                        onClick={() => handleEmoji(emoji)}
+                      >
+                        {emoji}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
               <label for="myFileInput" class="custom-file-input">
                 Choose a file
               </label>
