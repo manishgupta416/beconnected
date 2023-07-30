@@ -5,8 +5,9 @@ import { DataContext } from "../../context/DataContext";
 import { followUserHandler } from "../../services/DataServices";
 import { useNavigate } from "react-router";
 
-const RightPanel = () => {
-  const { dataState, dataDispatch } = useContext(DataContext);
+const RightPanel = ({ homeposts }) => {
+  const { dataState, dataDispatch, sortBtnText, setSortBtnText } =
+    useContext(DataContext);
   const { currentUser, loginToken } = useContext(AuthContext);
 
   const handleFollow = (_id, loginToken, dataDispatch) => {
@@ -32,16 +33,28 @@ const RightPanel = () => {
   return (
     <>
       <div className="right-sidebar">
-        <div className="buttons-rightside">
-          <div className="flex-row-btn">
-            <i class="fa-regular fa-fire"></i>
-            <button>Trending</button>
+        {homeposts && (
+          <div className="buttons-rightside">
+            <div className="flex-row-btn">
+              <i class="fa-regular fa-fire"></i>
+              <button
+                value={"Trending"}
+                onClick={(e) => setSortBtnText(e.target.value)}
+              >
+                Trending
+              </button>
+            </div>
+            <div className="flex-row-btn">
+              <i class="fa-regular fa-eye"></i>
+              <button
+                value={"Latest"}
+                onClick={(e) => setSortBtnText(e.target.value)}
+              >
+                Latest
+              </button>
+            </div>
           </div>
-          <div className="flex-row-btn">
-            <i class="fa-regular fa-eye"></i>
-            <button>Latest</button>
-          </div>
-        </div>
+        )}
         <h3>Suggestions for you</h3>
         {suggestedUsers?.map((user) => (
           <div className="sp-evn">

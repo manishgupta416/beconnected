@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Home.css";
 import Navbar from "../../components/Navbar/Navbar";
 import LeftPanel from "../../components/LeftPanel/LeftPanel";
@@ -11,7 +11,8 @@ import { posts } from "../../backend/db/posts";
 import AddPost from "../../components/AddPost/AddPost";
 
 const Home = () => {
-  const { dataState, dataDispatch } = useContext(DataContext);
+  const { dataState, dataDispatch, sortBtnText, setSortBtnText } =
+    useContext(DataContext);
   const { currentUser, loginToken } = useContext(AuthContext);
 
   const loggedInUser = dataState.users.find(
@@ -28,6 +29,37 @@ const Home = () => {
 
   const feedPosts = [...loggedInUserPosts, ...followedUserPosts];
   console.log(feedPosts, "hoem posts");
+
+  const [data, setData] = useState(feedPosts);
+  const [isDescending, setIsDescending] = useState(true); // Track the sorting order
+
+  // Function to handle the sorting logic
+  const handleSortByDate = () => {
+    const sortedData = [...data];
+
+    sortedData.sort((a, b) => {
+      const dateA = new Date(a.createdAt);
+      const dateB = new Date(b.createdAt);
+
+      if (isDescending) {
+        return dateB - dateA;
+      } else {
+        return dateA - dateB;
+      }
+    });
+    setData(sortedData);
+    setIsDescending(!isDescending);
+  };
+
+  const sortFilteredPost =
+    sortBtnText.length > 0
+      ? feedPosts.sort((post1, post2) =>
+          sortBtnText === "Trending"
+            ? post2.likes.likeCount - post1.likes.likeCount
+            : handleSortByDate
+        )
+      : feedPosts;
+
   return (
     <div className="main-container">
       <div className="nav">
@@ -38,12 +70,12 @@ const Home = () => {
       </div>
       <div className="content">
         {/* <AddPost /> */}
-        {feedPosts?.map((post) => (
+        {sortFilteredPost?.map((post) => (
           <SinglePost post={post} key={post._id} />
         ))}
       </div>
       <div className="right-side">
-        <RightPanel />
+        <RightPanel homeposts />
       </div>
     </div>
   );

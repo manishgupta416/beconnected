@@ -9,6 +9,7 @@ export const DataContext = createContext();
 export const DataProvider = ({ children }) => {
   const [dataState, dataDispatch] = useReducer(DataReducer, initialState);
   const [addPostBtn, setAddPostBtn] = useState(false);
+  const [sortBtnText, setSortBtnText] = useState("");
 
   useEffect(() => {
     getAllPosts(dataDispatch);
@@ -23,6 +24,8 @@ export const DataProvider = ({ children }) => {
         dataDispatch,
         addPostBtn,
         setAddPostBtn,
+        sortBtnText,
+        setSortBtnText,
       }}
     >
       {children}
