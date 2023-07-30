@@ -67,6 +67,84 @@ const AddComment = ({ onClose, postId }) => {
       }
     }
   }, [dataState.commentId]);
+
+  const emojis = [
+    "😀",
+    "😁",
+    "😂",
+    "🤣",
+    "😃",
+    "😄",
+    "🤗",
+    "🤩",
+    "😣",
+    "😥",
+    "😌",
+    "😴",
+    "😫",
+    "😪",
+    "😯",
+    "😝",
+    "😲",
+    "😭",
+    "😢",
+    "😨",
+    "🤪",
+    "😵",
+    "🤡",
+    "🤠",
+    "🥺",
+    "🥳",
+    "😇",
+    "🤧",
+    "🧐",
+    "🤓",
+    "🙀",
+    "😾",
+    "🙈",
+    "😽",
+    "❤",
+    "🧡",
+    "🖤",
+    "🤎",
+    "💗",
+    "💖",
+    "💌",
+    "💕",
+    "💚",
+    "💙",
+    "💌",
+    "🧨",
+    "✨",
+    "🎉",
+    "🎊",
+    "🎃",
+    "🎑",
+    "🎆",
+    "🎈",
+    "🎀",
+    "🎄",
+    "🎁",
+    "🍿",
+    "🧂",
+    "🍕",
+    "🍳",
+    "🥖",
+    "🍗",
+    "🍚",
+  ];
+  const [showEmojiPopup, setShowEmojiPopup] = useState(false);
+  const showEmojiList = () => {
+    setShowEmojiPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowEmojiPopup(false);
+  };
+
+  const handleEmoji = (emoji) => {
+    setCommentData(`${commentData}${emoji}`);
+  };
   return (
     <div>
       <div className="add-container popup-background flex">
@@ -87,7 +165,30 @@ const AddComment = ({ onClose, postId }) => {
               value={commentData}
             />
           </div>
-          <button onClick={() => addNewCommentHandler()}>Reply</button>
+          <div className="flx-space">
+            <div onClick={showEmojiList} className="cursor emoji">
+              😃
+            </div>
+            {showEmojiPopup && (
+              <div className="add-container popup-background flex">
+                <div className="avatar flx-space rm-br">
+                  <button onClick={handleClosePopup}>Close</button>
+                </div>
+
+                <div className="emoji-container popup-content ">
+                  {emojis.map((emoji) => (
+                    <span
+                      className="flex-rw cursor"
+                      onClick={() => handleEmoji(emoji)}
+                    >
+                      {emoji}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+            <button onClick={() => addNewCommentHandler()}>Reply</button>
+          </div>
         </div>
       </div>
     </div>
