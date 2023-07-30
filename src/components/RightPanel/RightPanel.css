@@ -41,3 +41,18 @@
 .flex-even {
   flex: 1;
 }
+
+.col-w {
+  padding: 6px 10px;
+  border: 2.3px solid blue;
+  background-color: white;
+  color: white;
+  border-radius: 7px;
+}
+.sort-btn {
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 2.2px solid blue;
+}

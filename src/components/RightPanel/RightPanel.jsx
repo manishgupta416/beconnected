@@ -35,18 +35,26 @@ const RightPanel = ({ homeposts }) => {
       <div className="right-sidebar">
         {homeposts && (
           <div className="buttons-rightside">
-            <div className="flex-row-btn">
-              <i class="fa-regular fa-fire"></i>
+            <div className="flex-row-btn col-w">
+              <i
+                class="fa-solid fa-fire fa-xl "
+                style={{ color: "#205dc5" }}
+              ></i>
               <button
+                className="sort-btn"
                 value={"Trending"}
                 onClick={(e) => setSortBtnText(e.target.value)}
               >
                 Trending
               </button>
             </div>
-            <div className="flex-row-btn">
-              <i class="fa-regular fa-eye"></i>
+            <div className="flex-row-btn col-w">
+              <i
+                class="fa-regular fa-eye fa-xl"
+                style={{ color: "#205dc5" }}
+              ></i>
               <button
+                className="sort-btn"
                 value={"Latest"}
                 onClick={(e) => setSortBtnText(e.target.value)}
               >
