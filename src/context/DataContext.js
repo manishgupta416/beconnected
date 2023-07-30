@@ -8,7 +8,7 @@ import { useState } from "react";
 export const DataContext = createContext();
 export const DataProvider = ({ children }) => {
   const [dataState, dataDispatch] = useReducer(DataReducer, initialState);
-  const [addPostBtn, setAddPostBtn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [sortBtnText, setSortBtnText] = useState("");
 
   useEffect(() => {
@@ -22,8 +22,8 @@ export const DataProvider = ({ children }) => {
         user: "manish",
         dataState,
         dataDispatch,
-        addPostBtn,
-        setAddPostBtn,
+        isLoading,
+        setIsLoading,
         sortBtnText,
         setSortBtnText,
       }}
