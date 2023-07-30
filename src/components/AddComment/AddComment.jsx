@@ -49,6 +49,22 @@ const AddComment = ({ onClose, postId }) => {
     }
   };
 
+  useEffect(() => {
+    //whenever you pass id as prop make sure to convert it into .tostring otherwise you'll get stuck for long to debug , also do as much console to debug
+    const postData = dataState.posts?.find(
+      (post) => postId.toString() === post?._id.toString()
+    );
+    console.log(postData, dataState.commentId, "commmmmmmp");
+    const commentDetails = postData.comments.find(
+      (comment) => comment?._id.toString() === dataState?.commentId.toString()
+    );
+    console.log(postData, "postdaat");
+    if (dataState?.commentId) {
+      setCommentData(commentDetails?.text);
+    } else {
+      setCommentData("");
+    }
+  }, [dataState.commentId]);
   return (
     <div>
       <div className="add-container popup-background flex">
