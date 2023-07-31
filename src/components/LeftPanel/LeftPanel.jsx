@@ -3,9 +3,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "./LeftPanel.css";
 import { AuthContext } from "../../context/AuthContext";
 import AddPost from "../AddPost/AddPost";
+import { DataContext } from "../../context/DataContext";
 
 const LeftPanel = () => {
   const { currentUser, loginToken } = useContext(AuthContext);
+  const { dataState } = useContext(DataContext);
   // const [isDialogOpen, setDialogOpen] = useState(false);
 
   // const handleDialogOutsideClick = () => {
@@ -20,6 +22,9 @@ const LeftPanel = () => {
   const handleAddPost = () => {
     setShowEditPopup(true);
   };
+  const loggedInUser = dataState.users.find(
+    (user) => user.username === currentUser.username
+  );
   return (
     <div>
       <div className="sidebar1">
@@ -49,13 +54,13 @@ const LeftPanel = () => {
         </button>
         <NavLink className="user-profile" to={"/profile"}>
           <div className="user-img">
-            <img className="user-img" src={currentUser.avatarUrl} alt="" />
+            <img className="user-img" src={loggedInUser.avatarUrl} alt="" />
           </div>
           <div className="user-details">
             <div className="user-name">
-              {currentUser.firstName} {currentUser.lastName}
+              {loggedInUser.firstName} {loggedInUser.lastName}
             </div>
-            <div className="user-email">@{currentUser.username}</div>
+            <div className="user-email">@{loggedInUser.username}</div>
           </div>
         </NavLink>
       </div>

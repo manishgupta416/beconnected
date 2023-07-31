@@ -45,6 +45,9 @@ const Navbar = () => {
     setShowUserPopup(false);
   };
 
+  const loggedInUser = dataState.users.find(
+    (user) => user.username === currentUser.username
+  ); //to get current updated all details
   return (
     <>
       <div className="nav">
@@ -109,7 +112,7 @@ const Navbar = () => {
           <div className="login-btn" onClick={handleButtonClick}>
             <img
               className="user-icon avatar"
-              src={currentUser?.avatarUrl}
+              src={loggedInUser?.avatarUrl}
               alt=""
             />
           </div>
