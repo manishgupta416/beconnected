@@ -83,7 +83,7 @@ export const AuthContextProvider = ({ children }) => {
         setLoginToken(response.data.encodedToken);
         // alert("signup successfully login to continue");
 
-        navigate("/sign-in");
+        navigate("/");
 
         toast.success("Sign-Up Successfully!!", {
           position: "bottom-right",

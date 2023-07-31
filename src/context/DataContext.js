@@ -4,9 +4,12 @@ import { DataReducer, initialState } from "../reducer/DataReducer";
 import { useEffect } from "react";
 import { getAllPosts, getAllUsers } from "../services/DataServices";
 import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "./AuthContext";
 
 export const DataContext = createContext();
 export const DataProvider = ({ children }) => {
+  const { loginToken, currentUser } = useContext(AuthContext);
   const [dataState, dataDispatch] = useReducer(DataReducer, initialState);
   const [isLoading, setIsLoading] = useState(true);
   const [sortBtnText, setSortBtnText] = useState("");
@@ -14,7 +17,7 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     getAllPosts(dataDispatch);
     getAllUsers(dataDispatch);
-  }, []);
+  }, [loginToken, currentUser]); // it re-render when new user signup otherwise will get error Cannot read properties of undefined (reading 'username')
 
   return (
     <DataContext.Provider
