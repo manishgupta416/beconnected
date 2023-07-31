@@ -15,7 +15,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import AddPost from "../AddPost/AddPost";
 import AddComment from "../AddComment/AddComment";
-
+import { ToastContainer, toast } from "react-toastify";
 const SinglePost = ({ post }) => {
   const { dataState, dataDispatch } = useContext(DataContext);
   const { currentUser, loginToken } = useContext(AuthContext);
@@ -48,6 +48,16 @@ const SinglePost = ({ post }) => {
 
   const handleBookmark = () => {
     bookMarkPostHandler(post?._id, loginToken, dataDispatch, loggedInuser);
+    toast.success("Added to bookmark", {
+      position: "bottom-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
   const handleRemoveBookmark = () => {
     removeBookMarkPostHandler(
@@ -79,6 +89,16 @@ const SinglePost = ({ post }) => {
   const handleDeletePost = (_id, loginToken, dataDispatch) => {
     deletePostHandler(_id, loginToken, dataDispatch);
     setDialogOpen(false);
+    toast.success("Post deleted Successfully!!", {
+      position: "bottom-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
   const navigate = useNavigate();
   const handlePostDetails = (_id) => {

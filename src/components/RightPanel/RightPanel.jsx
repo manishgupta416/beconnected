@@ -4,14 +4,25 @@ import { AuthContext } from "../../context/AuthContext";
 import { DataContext } from "../../context/DataContext";
 import { followUserHandler } from "../../services/DataServices";
 import { useNavigate } from "react-router";
-
+import { v4 as uuid } from "uuid";
+import { ToastContainer, toast } from "react-toastify";
 const RightPanel = ({ homeposts }) => {
   const { dataState, dataDispatch, sortBtnText, setSortBtnText } =
     useContext(DataContext);
   const { currentUser, loginToken } = useContext(AuthContext);
 
-  const handleFollow = (_id, loginToken, dataDispatch) => {
+  const handleFollow = (_id, loginToken, dataDispatch, username) => {
     followUserHandler(_id, loginToken, dataDispatch);
+    toast.success(`You are now following ${username}`, {
+      position: "bottom-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
 
   const user = dataState?.users?.find(
@@ -91,7 +102,12 @@ const RightPanel = ({ homeposts }) => {
               <button
                 className="btn-follow"
                 onClick={() =>
-                  handleFollow(user?._id, loginToken, dataDispatch)
+                  handleFollow(
+                    user?._id,
+                    loginToken,
+                    dataDispatch,
+                    user?.username
+                  )
                 }
               >
                 Follow

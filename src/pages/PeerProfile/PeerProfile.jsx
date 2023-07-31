@@ -12,6 +12,7 @@ import {
   unfollowUserHandler,
 } from "../../services/DataServices";
 import { AuthContext } from "../../context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
 
 const PeerProfile = () => {
   const { username } = useParams();
@@ -31,11 +32,31 @@ const PeerProfile = () => {
   const isFollowed = loggedInUser.following.some(
     (user) => user.username === username
   );
-  const handleUnfollow = (_id, loginToken, dataDispatch) => {
+  const handleUnfollow = (_id, loginToken, dataDispatch, username) => {
     unfollowUserHandler(_id, loginToken, dataDispatch);
+    toast.success(`You've unfollowed ${username}`, {
+      position: "bottom-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
-  const handleFollow = (_id, loginToken, dataDispatch) => {
+  const handleFollow = (_id, loginToken, dataDispatch, username) => {
     followUserHandler(_id, loginToken, dataDispatch);
+    toast.success(`You are now following ${username}`, {
+      position: "bottom-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
   console.log(userDetails, "peerusrnm");
   const [isShowListPopup, setShowListPopup] = useState(false);
@@ -97,7 +118,8 @@ const PeerProfile = () => {
                               handleUnfollow(
                                 userDetails?._id,
                                 loginToken,
-                                dataDispatch
+                                dataDispatch,
+                                userDetails?.username
                               )
                             }
                           >
@@ -109,7 +131,8 @@ const PeerProfile = () => {
                               handleFollow(
                                 userDetails?._id,
                                 loginToken,
-                                dataDispatch
+                                dataDispatch,
+                                userDetails?.username
                               )
                             }
                           >

@@ -8,6 +8,7 @@ import {
 } from "../../services/DataServices";
 
 import { v4 as uuid } from "uuid";
+import { ToastContainer, toast } from "react-toastify";
 
 const AddPost = ({ onClose }) => {
   const { dataState, dataDispatch, addPostBtn, setAddPostBtn } =
@@ -43,10 +44,28 @@ const AddPost = ({ onClose }) => {
         );
 
         dataDispatch({ type: "editPost", payload: null });
-        alert("Post Updated!");
         onClose();
+        toast.success("Post Updated Successfully!!", {
+          position: "bottom-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       } else {
-        alert("Please add something to post ");
+        toast.error("Please add content to update post", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
     } else {
       //adding new post
@@ -61,8 +80,28 @@ const AddPost = ({ onClose }) => {
           // ...currentUser, //because of this create handlr not wrk
         });
         onClose();
+        toast.success("Post Created  Successfully!!", {
+          position: "bottom-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       } else {
-        alert("Please add something to post");
+        // alert("Please add something to post");
+        toast.error("Please add content to post", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
     }
   };

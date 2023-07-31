@@ -7,6 +7,7 @@ import {
   addCommentHandler,
   editCommentHandler,
 } from "../../services/DataServices";
+import { ToastContainer, toast } from "react-toastify";
 
 const AddComment = ({ onClose, postId }) => {
   const { currentUser, loginToken } = useContext(AuthContext);
@@ -33,8 +34,28 @@ const AddComment = ({ onClose, postId }) => {
         dataDispatch({ type: "editComment", payload: null });
         alert("comment Updated!");
         onClose();
+        toast.success("Comment Updated! Successfully!!", {
+          position: "bottom-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       } else {
-        alert("Please add something to reply");
+        // alert("Please add something to reply");
+        toast.error("Please add content to reply", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
     } else {
       //adding new comment
@@ -43,8 +64,28 @@ const AddComment = ({ onClose, postId }) => {
         dataDispatch({ type: "editComment", payload: null });
         setCommentData("");
         onClose();
+        toast.success("Comment added!!", {
+          position: "bottom-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       } else {
-        alert("Please add something to reply");
+        // alert("Please add something to reply");
+        toast.error("Please add content to reply", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
     }
   };

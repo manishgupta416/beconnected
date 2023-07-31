@@ -12,7 +12,8 @@ import {
   deleteCommentHandler,
   editCommentHandler,
 } from "../../services/DataServices";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const PostDetails = () => {
   const { postId } = useParams();
   const { dataState, dataDispatch } = useContext(DataContext);
@@ -61,6 +62,16 @@ const PostDetails = () => {
       dataDispatch
     );
     setDialogCommentId(null);
+    toast.success("Comment Deleted!!", {
+      position: "bottom-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
 
   const handleEditComment = (

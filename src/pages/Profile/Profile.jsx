@@ -9,7 +9,7 @@ import { v4 as uuid } from "uuid";
 import { editUserHandler } from "../../services/DataServices";
 import SinglePost from "../../components/SinglePost/SinglePost";
 import { useNavigate } from "react-router";
-
+import { ToastContainer, toast } from "react-toastify";
 const Profile = () => {
   const { currentUser, loginToken, logoutHandler } = useContext(AuthContext);
   const { dataState, dataDispatch } = useContext(DataContext);
@@ -34,6 +34,16 @@ const Profile = () => {
     editUserHandler(userDetails, loginToken, dataDispatch);
     setDialogOpen(false);
     setShowEditPopup(false);
+    toast.success("Profile Updated Successfully!!", {
+      position: "bottom-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
 
   const [userDetails, setUserDetails] = useState({
