@@ -111,7 +111,7 @@ const SignUp = () => {
                 <div className="signup-footer">
                   <p>Already have an account? </p>
                   <div className="signin">
-                    <NavLink className="sign-in" to="/sign-in">
+                    <NavLink className="sign-in" to="/">
                       Sign In
                     </NavLink>
                   </div>
