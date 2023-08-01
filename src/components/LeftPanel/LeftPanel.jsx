@@ -4,7 +4,7 @@ import "./LeftPanel.css";
 import { AuthContext } from "../../context/AuthContext";
 import AddPost from "../AddPost/AddPost";
 import { DataContext } from "../../context/DataContext";
-
+import { BiHomeAlt2 } from "react-icons/bi";
 const LeftPanel = () => {
   const { currentUser, loginToken } = useContext(AuthContext);
   const { dataState } = useContext(DataContext);
@@ -30,7 +30,7 @@ const LeftPanel = () => {
       <div className="sidebar1">
         <div className="side-links">
           <NavLink className="flex-row" to={"/home"}>
-            <i class="fa-sharp fa-light fa-house-user"></i>
+            <BiHomeAlt2 />
             <div className="home">Home</div>
           </NavLink>
 
