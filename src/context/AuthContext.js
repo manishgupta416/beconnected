@@ -73,6 +73,7 @@ export const AuthContextProvider = ({ children }) => {
         lastName: userSignupDetails.lastName,
         username: userSignupDetails.username,
         password: userSignupDetails.password,
+        avatarUrl: "https://cdn-icons-png.flaticon.com/128/236/236832.png",
       });
       console.log(response);
       if (response.status === 201) {
