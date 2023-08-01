@@ -63,7 +63,7 @@ const LeftPanel = () => {
             </div>
           )}
           {loggedInUser ? (
-            <div className="user-details">
+            <div className="user-details username-col">
               <div className="user-name">
                 {loggedInUser?.firstName} {loggedInUser?.lastName}
               </div>
