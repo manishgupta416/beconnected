@@ -30,34 +30,22 @@ const Home = () => {
   const feedPosts = [...loggedInUserPosts, ...followedUserPosts];
   console.log(feedPosts, "hoem posts");
 
-  const [data, setData] = useState(feedPosts);
-  const [isDescending, setIsDescending] = useState(true); // Track the sorting order
+  const sortByDateOldest = (post1, post2) =>
+    new Date(post1.createdAt) - new Date(post2.createdAt);
 
-  // Function to handle the sorting logic
-  const handleSortByDate = () => {
-    const sortedData = [...data];
+  const sortByDateLatest = (post1, post2) =>
+    new Date(post2.createdAt) - new Date(post1.createdAt);
 
-    sortedData.sort((a, b) => {
-      const dateA = new Date(a.createdAt);
-      const dateB = new Date(b.createdAt);
-
-      if (isDescending) {
-        return dateB - dateA;
-      } else {
-        return dateA - dateB;
-      }
-    });
-    setData(sortedData);
-    setIsDescending(!isDescending);
-  };
+  const sortByLikes = (post1, post2) =>
+    post2.likes.likeCount - post1.likes.likeCount;
 
   const sortFilteredPost =
     sortBtnText.length > 0
-      ? feedPosts.sort((post1, post2) =>
-          sortBtnText === "Trending"
-            ? post2.likes.likeCount - post1.likes.likeCount
-            : handleSortByDate
-        )
+      ? sortBtnText === "Trending"
+        ? feedPosts.sort(sortByLikes)
+        : sortBtnText === "Latest"
+        ? feedPosts.sort(sortByDateLatest)
+        : feedPosts.sort(sortByDateOldest)
       : feedPosts;
 
   return (
