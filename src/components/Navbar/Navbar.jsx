@@ -26,7 +26,9 @@ const Navbar = () => {
   };
 
   const [input, setInput] = useState("");
-
+  const handleClose = () => {
+    setShowUserPopup(false);
+  };
   const inputSearch =
     input.length > 0
       ? dataState.users.filter(
@@ -57,11 +59,11 @@ const Navbar = () => {
             <h2 className="nav-header">beconnected</h2>
           </NavLink>
         </div>
-        <div className="search-container">
+        <div className="search-container ">
           <input
             type="text"
-            placeholder="search people"
-            onChange={(e) => setInput(e.target.value.toLowerCase())}
+            placeholder="Search user"
+            readOnly
             onClick={inputSearch.length !== 0 && showUserList}
           />
         </div>
@@ -80,10 +82,25 @@ const Navbar = () => {
             }}
             onClick={handleDialogOutsideClick}
           >
-            <div className="user-popup" onClick={(e) => e.stopPropagation()}>
+            <div
+              className="user-popup srch-popup"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button onClick={handleClose} className="btn-fb cursor">
+                X
+              </button>
+              <div className="search-user ">
+                <input
+                  type="text"
+                  placeholder="Search user"
+                  onChange={(e) => setInput(e.target.value.toLowerCase())}
+                  onClick={inputSearch.length !== 0 && showUserList}
+                />
+              </div>
+
               <ul style={{ listStyleType: "none", padding: 0 }}>
                 {inputSearch?.map((user) => (
-                  <div className="flex-rw border-bottom">
+                  <div className="flex-rw border-bottom margin-btm">
                     {user?.avatarUrl && (
                       <img
                         className="avatar rm-br cursor"
@@ -103,7 +120,7 @@ const Navbar = () => {
                     </div>
                   </div>
                 ))}
-                {inputSearch.length === 0 && "Not Found"}
+                {inputSearch.length === 0 && "No user found"}
               </ul>
             </div>
           </div>

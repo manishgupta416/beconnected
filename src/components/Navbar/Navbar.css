@@ -32,6 +32,7 @@ li {
   border-radius: 20px;
   padding: 8px 25px;
   font-size: large;
+  text-align: center;
   color: #1b74e4;
   border: 2px solid #1b74e4;
 }
@@ -67,4 +68,31 @@ li {
   position: relative;
   left: 69px;
   top: 157px;
+}
+
+.search-user input {
+  border-radius: 20px;
+  padding: 8px 0;
+  font-size: large;
+  text-align: center;
+  color: #1b74e4;
+  border: 2px solid #1b74e4;
+}
+.srch-popup {
+  position: relative;
+  top: 330px;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 60px;
+  min-width: 300px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.margin-btm {
+  border-bottom: 2px solid blue;
+  padding: 2px;
+  gap: 10px;
+  margin: 7px 0;
 }
