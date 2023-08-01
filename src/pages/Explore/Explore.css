@@ -35,7 +35,8 @@
   flex-direction: column;
   justify-content: space-evenly;
   border: 2px solid;
-  height: auto;
+  min-height: calc(100vh - 54px);
+
   background-color: white;
 }
 
