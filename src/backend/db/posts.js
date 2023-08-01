@@ -49,10 +49,10 @@ export const posts = [
       dislikedBy: [],
     },
     comments: [],
-    username: "manishgupta",
-    firstName: "Manish",
-    lastName: "Gupta",
-    createdAt: "2022-11-22T10:12:45+05:30",
+    username: "davidwilson",
+    firstName: "David",
+    lastName: "Wilson",
+    createdAt: "2022-09-02T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   // food
@@ -276,24 +276,6 @@ export const posts = [
     updatedAt: formatDate(),
   },
   // bird
-  {
-    _id: 16,
-    content:
-      "Fun Fact: Did you know that cygnets is the name for baby swans? These little ones will grow into beautiful adult swans just like their parents.",
-    mediaUrl:
-      "https://images.unsplash.com/photo-1522926970010-0f971d7220ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGN1dGUlMjBiaXJkfGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
-    likes: {
-      likeCount: 4,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    comments: [],
-    username: "davidwilson",
-    firstName: "David",
-    lastName: "Wilson",
-    createdAt: "2022-09-02T10:12:45+05:30",
-    updatedAt: formatDate(),
-  },
   {
     _id: 17,
     content:
