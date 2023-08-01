@@ -52,7 +52,7 @@ const RightPanel = ({ homeposts }) => {
                 style={{ color: "#205dc5" }}
               ></i>
               <button
-                className="sort-btn"
+                className="sort-btn btn-fb"
                 value={"Trending"}
                 onClick={(e) => setSortBtnText(e.target.value)}
               >
@@ -65,7 +65,7 @@ const RightPanel = ({ homeposts }) => {
                 style={{ color: "#205dc5" }}
               ></i>
               <button
-                className="sort-btn"
+                className="sort-btn btn-fb"
                 value={"Latest"}
                 onClick={(e) => setSortBtnText(e.target.value)}
               >
@@ -100,7 +100,7 @@ const RightPanel = ({ homeposts }) => {
               </div>
 
               <button
-                className="btn-follow"
+                className="btn-follow btn-fb"
                 onClick={() =>
                   handleFollow(
                     user?._id,

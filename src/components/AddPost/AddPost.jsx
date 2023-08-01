@@ -213,7 +213,9 @@ const AddPost = ({ onClose }) => {
       <div className="add-container popup-background flex">
         <div className="avatar flx-space rm-br">
           <img className="avatar rm-br" src={currentUser.avatarUrl} alt="" />
-          <button onClick={handleClose}>Close</button>
+          <button className="btn-fb" onClick={handleClose}>
+            Close
+          </button>
         </div>
 
         <div className="add-content popup-content">
@@ -223,7 +225,7 @@ const AddPost = ({ onClose }) => {
               type="text"
               name=""
               id=""
-              placeholder="Whats happening"
+              placeholder={`What's on your mind ${currentUser.firstName} ?`}
               onChange={(e) =>
                 setPostDetails({ ...postDetails, content: e.target.value })
               }
@@ -240,7 +242,7 @@ const AddPost = ({ onClose }) => {
                 </div>
                 <div className="not-select-btn">
                   <button
-                    className="cursor rm-btn"
+                    className="cursor rm-btn btn-fb"
                     onClick={() => handleImageRemove()}
                   >
                     X
@@ -257,7 +259,9 @@ const AddPost = ({ onClose }) => {
               {showEmojiPopup && (
                 <div className="add-container popup-background flex">
                   <div className="avatar flx-space rm-br">
-                    <button onClick={handleClosePopup}>Close</button>
+                    <button className="btn-fb" onClick={handleClosePopup}>
+                      Close
+                    </button>
                   </div>
 
                   <div className="emoji-container popup-content ">
@@ -281,7 +285,9 @@ const AddPost = ({ onClose }) => {
                 class="hidden"
                 onChange={(e) => uploadFileHandler(e)}
               />
-              <button onClick={() => addNewPostHandler()}>Post</button>
+              <button className="btn-fb" onClick={() => addNewPostHandler()}>
+                Post
+              </button>
             </div>
           </div>
         </div>

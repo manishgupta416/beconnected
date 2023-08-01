@@ -12,6 +12,7 @@
   flex-direction: column;
   gap: 10px;
   padding: 10px 20px;
+  font-size: x-large;
 }
 .flex-row {
   display: flex;
@@ -27,6 +28,8 @@
   font-size: large;
 
   padding: 10px;
+  line-height: 48px;
+  padding: 0 16px;
   text-transform: capitalize;
 }
 
@@ -55,4 +58,11 @@
 
 .addNewPostDiv {
   position: absolute;
+}
+
+.btn-fb {
+  background-color: #1877f2;
+  border: none;
+  font-size: 20px;
+  color: #fff;
 }

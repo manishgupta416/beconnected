@@ -191,7 +191,9 @@ const AddComment = ({ onClose, postId }) => {
       <div className="add-container popup-background flex">
         <div className="avatar flx-space rm-br">
           <img className="avatar rm-br" src={currentUser.avatarUrl} alt="" />
-          <button onClick={handleClose}>Close</button>
+          <button onClick={handleClose} className="btn-fb">
+            Close
+          </button>
         </div>
 
         <div className="add-content popup-content">
@@ -213,7 +215,9 @@ const AddComment = ({ onClose, postId }) => {
             {showEmojiPopup && (
               <div className="add-container popup-background flex">
                 <div className="avatar flx-space rm-br">
-                  <button onClick={handleClosePopup}>Close</button>
+                  <button className="btn-fb" onClick={handleClosePopup}>
+                    Close
+                  </button>
                 </div>
 
                 <div className="emoji-container popup-content ">
@@ -228,7 +232,9 @@ const AddComment = ({ onClose, postId }) => {
                 </div>
               </div>
             )}
-            <button onClick={() => addNewCommentHandler()}>Reply</button>
+            <button className="btn-fb" onClick={() => addNewCommentHandler()}>
+              Reply
+            </button>
           </div>
         </div>
       </div>

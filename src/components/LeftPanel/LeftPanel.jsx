@@ -49,7 +49,7 @@ const LeftPanel = () => {
             <div className="profile">Profile</div>
           </NavLink>
         </div>
-        <button className="btn-create-post" onClick={handleAddPost}>
+        <button className="btn-create-post btn-fb" onClick={handleAddPost}>
           Create New Post
         </button>
         <NavLink className="user-profile" to={"/profile"}>

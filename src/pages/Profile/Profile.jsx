@@ -102,9 +102,13 @@ const Profile = () => {
               <div className="popup-background flex flex-sp">
                 <div className="edit-container popup-content wdth">
                   <div className="edit-nav">
-                    <button onClick={handleClose}>X</button>
-                    <strong>Edit Profile</strong>
-                    <button onClick={handleUpdateProfile}>Update</button>
+                    <button className="btn-fb" onClick={handleClose}>
+                      X
+                    </button>
+                    <strong className="txt">Edit Profile</strong>
+                    <button className="btn-fb" onClick={handleUpdateProfile}>
+                      Update
+                    </button>
                   </div>
                   <div className="edit-img">
                     <img
@@ -216,10 +220,12 @@ const Profile = () => {
                       <div className="user-id">@{loggedInUser?.username}</div>
                     </div>
 
-                    <button className="edit" onClick={handleButtonClick}>
+                    <button className="edit btn-fb" onClick={handleButtonClick}>
                       Edit Profile
                     </button>
-                    <button onClick={logoutHandler}>LogOut</button>
+                    <button className="btn-fb" onClick={logoutHandler}>
+                      LogOut
+                    </button>
                   </div>
                 </div>
               </div>
