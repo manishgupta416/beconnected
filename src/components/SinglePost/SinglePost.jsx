@@ -88,6 +88,7 @@ const SinglePost = ({ post }) => {
 
   const handleDeletePost = (_id, loginToken, dataDispatch) => {
     deletePostHandler(_id, loginToken, dataDispatch);
+    navigate("/home");
     setDialogOpen(false);
     toast.success("Post deleted Successfully!!", {
       position: "bottom-right",

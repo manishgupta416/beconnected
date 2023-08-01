@@ -153,7 +153,9 @@ const PostDetails = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="user-comment">{comment.text} </div>
+                      <div className="user-comment comment-txt">
+                        {comment.text}{" "}
+                      </div>
                     </div>
                     <div
                       className="sort-icon cursor"
