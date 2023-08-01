@@ -17,7 +17,7 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     getAllPosts(dataDispatch);
     getAllUsers(dataDispatch);
-  }, [loginToken, currentUser]); // it re-render when new user signup otherwise will get error Cannot read properties of undefined (reading 'username')
+  }, [loginToken]); // it re-render when new user signup otherwise will get error Cannot read properties of undefined (reading 'username')
 
   return (
     <DataContext.Provider

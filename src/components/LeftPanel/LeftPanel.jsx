@@ -22,8 +22,8 @@ const LeftPanel = () => {
   const handleAddPost = () => {
     setShowEditPopup(true);
   };
-  const loggedInUser = dataState.users.find(
-    (user) => user.username === currentUser.username
+  const loggedInUser = dataState?.users?.find(
+    (user) => user?.username === currentUser?.username
   );
   return (
     <div>
@@ -53,15 +53,30 @@ const LeftPanel = () => {
           Create New Post
         </button>
         <NavLink className="user-profile" to={"/profile"}>
-          <div className="user-img">
-            <img className="user-img" src={loggedInUser.avatarUrl} alt="" />
-          </div>
-          <div className="user-details">
-            <div className="user-name">
-              {loggedInUser.firstName} {loggedInUser.lastName}
+          {loggedInUser ? (
+            <div className="user-img">
+              <img className="user-img" src={loggedInUser?.avatarUrl} alt="" />
             </div>
-            <div className="user-email">@{loggedInUser.username}</div>
-          </div>
+          ) : (
+            <div className="user-img">
+              <img className="user-img" src={currentUser?.avatarUrl} alt="" />
+            </div>
+          )}
+          {loggedInUser ? (
+            <div className="user-details">
+              <div className="user-name">
+                {loggedInUser?.firstName} {loggedInUser?.lastName}
+              </div>
+              <div className="user-email">@{loggedInUser?.username}</div>
+            </div>
+          ) : (
+            <div className="user-details">
+              <div className="user-name">
+                {currentUser?.firstName} {currentUser?.lastName}
+              </div>
+              <div className="user-email">@{currentUser?.username}</div>
+            </div>
+          )}
         </NavLink>
       </div>
       {showEditPopup && <AddPost onClose={() => setShowEditPopup(false)} />}
