@@ -4,3 +4,9 @@
   gap: 10px;
   justify-content: space-around;
 }
+
+.txt-col {
+  color: blue;
+  font-size: large;
+  font-weight: 600;
+}

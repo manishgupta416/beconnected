@@ -258,10 +258,15 @@ const Profile = () => {
                         src={userDetails.avatarUrl}
                         alt=""
                       /> */}
-                        <button onClick={handleClosePopuo}>X</button>
+                        <button className="btn-fb" onClick={handleClosePopuo}>
+                          X
+                        </button>
                       </div>
 
                       <div className="add-content popup-content">
+                        {loggedInUser?.followers.length === 0 && (
+                          <div className="txt-col">No followers yet</div>
+                        )}
                         {loggedInUser?.followers.map((user) => (
                           <div className="flex-rw border-bottom">
                             <img
@@ -300,10 +305,15 @@ const Profile = () => {
                         src={userDetails.avatarUrl}
                         alt=""
                       /> */}
-                      <button onClick={handleClosePopuo}>X</button>
+                      <button className="btn-fb" onClick={handleClosePopuo}>
+                        X
+                      </button>
                     </div>
 
                     <div className="add-content popup-content">
+                      {loggedInUser?.following.length === 0 && (
+                        <div className="txt-col">No following yet</div>
+                      )}
                       {loggedInUser?.following.map((user) => (
                         <div className="flex-rw border-bottom">
                           <img

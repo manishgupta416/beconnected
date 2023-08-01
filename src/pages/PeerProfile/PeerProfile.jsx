@@ -114,6 +114,7 @@ const PeerProfile = () => {
                       <div>
                         {isFollowed ? (
                           <button
+                            className="btn-fb"
                             onClick={() =>
                               handleUnfollow(
                                 userDetails?._id,
@@ -127,6 +128,7 @@ const PeerProfile = () => {
                           </button>
                         ) : (
                           <button
+                            className="btn-fb"
                             onClick={() =>
                               handleFollow(
                                 userDetails?._id,
@@ -180,10 +182,15 @@ const PeerProfile = () => {
                         src={userDetails.avatarUrl}
                         alt=""
                       /> */}
-                      <button onClick={handleClosePopuo}>X</button>
+                      <button className="btn-fb" onClick={handleClosePopuo}>
+                        X
+                      </button>
                     </div>
 
                     <div className="add-content popup-content">
+                      {userDetails?.followers.length === 0 && (
+                        <div className="txt-col">No followers yet</div>
+                      )}
                       {userDetails?.followers.map((user) => (
                         <div className="flex-rw border-bottom">
                           <img
@@ -215,10 +222,15 @@ const PeerProfile = () => {
                         src={userDetails.avatarUrl}
                         alt=""
                       /> */}
-                      <button onClick={handleClosePopuo}>X</button>
+                      <button className="btn-fb" onClick={handleClosePopuo}>
+                        X
+                      </button>
                     </div>
 
                     <div className="add-content popup-content">
+                      {userDetails?.following.length === 0 && (
+                        <div className="txt-col">No following yet</div>
+                      )}
                       {userDetails?.following.map((user) => (
                         <div className="flex-rw border-bottom">
                           <img
