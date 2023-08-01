@@ -36,7 +36,7 @@ export const posts = [
     username: "johndoe",
     firstName: "John",
     lastName: "Doe",
-    createdAt: formatDate(),
+    createdAt: "2022-07-29T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -52,7 +52,7 @@ export const posts = [
     username: "manishgupta",
     firstName: "Manish",
     lastName: "Gupta",
-    createdAt: formatDate(),
+    createdAt: "2022-11-22T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   // food
@@ -71,7 +71,7 @@ export const posts = [
     username: "manishgupta",
     firstName: "Manish",
     lastName: "Gupta",
-    createdAt: formatDate(),
+    createdAt: "2022-11-10T10:12:45+05:30",
     updatedAt: formatDate(),
   },
 
@@ -90,7 +90,7 @@ export const posts = [
     username: "oliviawalker",
     firstName: "Olivi",
     lastName: "Walker",
-    createdAt: formatDate(),
+    createdAt: "2023-09-10T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -108,7 +108,7 @@ export const posts = [
     username: "manishgupta",
     firstName: "Manish",
     lastName: "Gupta",
-    createdAt: formatDate(),
+    createdAt: "2022-08-16T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -126,7 +126,7 @@ export const posts = [
     username: "johndoe",
     firstName: "John",
     lastName: "Doe",
-    createdAt: formatDate(),
+    createdAt: "2022-03-10T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -144,7 +144,7 @@ export const posts = [
     username: "janesmith",
     firstName: "Jane",
     lastName: "Smith",
-    createdAt: formatDate(),
+    createdAt: "2020-03-10T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -162,7 +162,7 @@ export const posts = [
     username: "manishgupta",
     firstName: "Manish",
     lastName: "Gupta",
-    createdAt: formatDate(),
+    createdAt: "2020-05-15T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   // nature
@@ -181,7 +181,7 @@ export const posts = [
     username: "williamanderson",
     firstName: "William",
     lastName: "Anderson",
-    createdAt: formatDate(),
+    createdAt: "2020-07-08T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -199,7 +199,7 @@ export const posts = [
     username: "danielthompson",
     firstName: "Daniel",
     lastName: "Thompson",
-    createdAt: formatDate(),
+    createdAt: "2020-11-21T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -217,7 +217,7 @@ export const posts = [
     username: "oliviawalker",
     firstName: "Olivi",
     lastName: "Walker",
-    createdAt: formatDate(),
+    createdAt: "2021-01-21T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   // animal
@@ -236,7 +236,7 @@ export const posts = [
     username: "manishgupta",
     firstName: "Manish",
     lastName: "Gupta",
-    createdAt: formatDate(),
+    createdAt: "2021-03-23T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -254,7 +254,7 @@ export const posts = [
     username: "williamanderson",
     firstName: "William",
     lastName: "Anderson",
-    createdAt: formatDate(),
+    createdAt: "2021-10-03T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -272,7 +272,7 @@ export const posts = [
     username: "manishgupta",
     firstName: "Manish",
     lastName: "Gupta",
-    createdAt: formatDate(),
+    createdAt: "2022-09-03T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   // bird
@@ -291,7 +291,7 @@ export const posts = [
     username: "davidwilson",
     firstName: "David",
     lastName: "Wilson",
-    createdAt: formatDate(),
+    createdAt: "2022-09-02T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -309,7 +309,7 @@ export const posts = [
     username: "emilydavis",
     firstName: "Emily",
     lastName: "Davis",
-    createdAt: formatDate(),
+    createdAt: "2022-11-21T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -327,7 +327,7 @@ export const posts = [
     username: "manishgupta",
     firstName: "Manish",
     lastName: "Gupta",
-    createdAt: formatDate(),
+    createdAt: "2023-01-21T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -344,7 +344,7 @@ export const posts = [
     username: "sophiarodriguez",
     firstName: "Sophia",
     lastName: "Rodriguez",
-    createdAt: formatDate(),
+    createdAt: "2023-02-15T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   //js react
@@ -363,7 +363,7 @@ export const posts = [
     username: "davidwilson",
     firstName: "David",
     lastName: "Wilson",
-    createdAt: formatDate(),
+    createdAt: "2023-04-01T10:12:45+05:30",
     updatedAt: formatDate(),
   },
   {
@@ -381,7 +381,7 @@ export const posts = [
     username: "sophiarodriguez",
     firstName: "Sophia",
     lastName: "Rodriguez",
-    createdAt: formatDate(),
+    createdAt: "2023-07-01T10:12:45+05:30",
     updatedAt: formatDate(),
   },
 ];
