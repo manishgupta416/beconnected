@@ -137,3 +137,18 @@ input {
   color: blue;
   font-size: x-large;
 }
+.flx-row {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+.avatar-img {
+  width: 60px;
+  height: 60px;
+  margin: 0 4px;
+}
+.scroll {
+  overflow-y: scroll;
+  top: 0;
+}

@@ -59,6 +59,9 @@ const Profile = () => {
     const file = e.target.files[0];
     setUserDetails({ ...userDetails, avatarUrl: URL.createObjectURL(file) });
   };
+  const uploadAvatarHandler = (avatar) => {
+    setUserDetails({ ...userDetails, avatarUrl: avatar });
+  };
 
   const loggedInUserPosts = dataState.posts.filter(
     (post) => post.username === loggedInUser.username
@@ -87,6 +90,16 @@ const Profile = () => {
     setShowFollowerListPopup(true);
   };
 
+  const avatars = [
+    "https://cdn-icons-png.flaticon.com/128/4140/4140047.png",
+    "https://cdn-icons-png.flaticon.com/128/4333/4333609.png",
+    "https://cdn-icons-png.flaticon.com/128/236/236832.png",
+    "https://cdn-icons-png.flaticon.com/128/6997/6997662.png",
+    "https://cdn-icons-png.flaticon.com/128/4140/4140061.png",
+    "https://cdn-icons-png.flaticon.com/128/1154/1154448.png",
+    "https://cdn-icons-png.flaticon.com/128/2922/2922561.png",
+    "https://cdn-icons-png.flaticon.com/128/4140/4140051.png",
+  ];
   return (
     <div>
       <div className="main-container">
@@ -100,7 +113,7 @@ const Profile = () => {
           <div className="profile-container">
             {showEditPopup && (
               <div className="popup-background flex flex-sp">
-                <div className="edit-container popup-content wdth">
+                <div className="edit-container popup-content wdth scroll">
                   <div className="edit-nav">
                     <button className="btn-fb" onClick={handleClose}>
                       X
@@ -109,6 +122,19 @@ const Profile = () => {
                     <button className="btn-fb" onClick={handleUpdateProfile}>
                       Update
                     </button>
+                  </div>
+                  <div className="flx-row">
+                    {" "}
+                    {avatars.map((avatar) => (
+                      <span>
+                        <img
+                          className="avatar-img"
+                          onClick={() => uploadAvatarHandler(avatar)}
+                          src={avatar}
+                          alt="avatar"
+                        />
+                      </span>
+                    ))}
                   </div>
                   <div className="edit-img">
                     <img
