@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import "./Navbar.css";
-import icon from "../../assets/icon.png";
+import favicon from "../../assets/favicon.ico";
 import { AuthContext } from "../../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -55,7 +55,7 @@ const Navbar = () => {
       <div className="nav">
         <div className="nav-left">
           <NavLink to="/home" className="nav-left-content">
-            <img src={icon} alt="" className="nav-img" />
+            <img src={favicon} alt="" className="nav-img" />
             <h2 className="nav-header">beconnected</h2>
           </NavLink>
         </div>
