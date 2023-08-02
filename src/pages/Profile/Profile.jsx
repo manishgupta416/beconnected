@@ -10,6 +10,7 @@ import { editUserHandler } from "../../services/DataServices";
 import SinglePost from "../../components/SinglePost/SinglePost";
 import { useNavigate } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
+import { useEffect } from "react";
 const Profile = () => {
   const { currentUser, loginToken, logoutHandler } = useContext(AuthContext);
   const { dataState, dataDispatch } = useContext(DataContext);
@@ -100,6 +101,11 @@ const Profile = () => {
     "https://cdn-icons-png.flaticon.com/128/2922/2922561.png",
     "https://cdn-icons-png.flaticon.com/128/4140/4140051.png",
   ];
+
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <div className="main-container">

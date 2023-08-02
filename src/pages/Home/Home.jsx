@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Navbar from "../../components/Navbar/Navbar";
 import LeftPanel from "../../components/LeftPanel/LeftPanel";
@@ -48,6 +48,10 @@ const Home = () => {
         : feedPosts.sort(sortByDateOldest)
       : feedPosts;
 
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="main-container">
       <div className="nav">

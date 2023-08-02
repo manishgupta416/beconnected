@@ -5,6 +5,7 @@ import LeftPanel from "../../components/LeftPanel/LeftPanel";
 import SinglePost from "../../components/SinglePost/SinglePost";
 import RightPanel from "../../components/RightPanel/RightPanel";
 import { AuthContext } from "../../context/AuthContext";
+import { useEffect } from "react";
 
 const Bookmarks = () => {
   const { dataState } = useContext(DataContext);
@@ -17,6 +18,10 @@ const Bookmarks = () => {
   const bookmarkedPost = dataState.posts.filter((post) =>
     loggedInUser.bookmarks.find((bp) => post._id === bp)
   );
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <div className="main-container">

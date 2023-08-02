@@ -13,6 +13,7 @@ import {
 } from "../../services/DataServices";
 import { AuthContext } from "../../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
+import { useEffect } from "react";
 
 const PeerProfile = () => {
   const { username } = useParams();
@@ -80,6 +81,10 @@ const PeerProfile = () => {
   const showFollowingList = () => {
     setShowFollowingListPopup(true);
   };
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div>

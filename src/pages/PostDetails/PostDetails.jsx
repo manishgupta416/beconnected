@@ -14,6 +14,7 @@ import {
 } from "../../services/DataServices";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
 const PostDetails = () => {
   const { postId } = useParams();
   const { dataState, dataDispatch } = useContext(DataContext);
@@ -87,6 +88,10 @@ const PostDetails = () => {
     setShowCommentPopup(true);
   };
 
+  useEffect(() => {
+    // Scroll to the top when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div className="main-container">
