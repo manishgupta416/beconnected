@@ -11,7 +11,7 @@ const PageNotFound = () => {
     <div className="not-Found-container">
       <h2>Sorry, Page not found!</h2>
       <img className="notFound-img" src={pageNotFound} alt="Page Not Found" />
-      <button className="not-found-btn" onClick={() => navigate("/")}>
+      <button className="not-found-btn btn-fb" onClick={() => navigate("/")}>
         Go to Homepage
       </button>
     </div>
