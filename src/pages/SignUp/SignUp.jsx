@@ -46,6 +46,10 @@ const SignUp = () => {
       );
     }
   };
+  const [showPassword, setShowPassword] = useState(false);
+  const handlePasswordType = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <div className="main">
       <div className="main-login-container">
@@ -94,13 +98,28 @@ const SignUp = () => {
             <div className="signup-items">
               <div className="signup-input-container">
                 <label htmlFor="">Password</label>
-                <input
-                  className="signup-inputs"
-                  type="password"
-                  name="password"
-                  onChange={(e) => handleSignUpInputs(e, "password")}
-                />
-              </div>
+                <div>
+                  <input
+                    className="signup-inputs"
+                    type={`${showPassword ? "text" : "password"}`}
+                    name="password"
+                    onChange={(e) => handleSignUpInputs(e, "password")}
+                  />{" "}
+                  {showPassword ? (
+                    <i
+                      class="fa-solid fa-eye cursor"
+                      style={{ color: "#1e5ecc" }}
+                      onClick={handlePasswordType}
+                    ></i>
+                  ) : (
+                    <i
+                      class="fa-solid fa-eye-slash cursor"
+                      style={{ color: "#1e5ecc" }}
+                      onClick={handlePasswordType}
+                    ></i>
+                  )}
+                </div>
+              </div>{" "}
             </div>
 
             <div className="signup-items">
