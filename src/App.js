@@ -12,6 +12,7 @@ import Bookmarks from "./pages/Bookmarks/Bookmarks";
 import Profile from "./pages/Profile/Profile";
 import PeerProfile from "./pages/PeerProfile/PeerProfile";
 import PostDetails from "./pages/PostDetails/PostDetails";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const App = () => {
   return (
@@ -32,13 +33,55 @@ const App = () => {
         <Route path="/api-test" element={<Mockman />} />
         <Route path="/" element={<Sign />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/home" element={<Home />} />
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
         <Route path="*" element={<PageNotFound />} />
-        <Route path="/explore" element={<Explore />} />
-        <Route path="/bookmarks" element={<Bookmarks />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/:username" element={<PeerProfile />} />
-        <Route path="/post/:postId" element={<PostDetails />} />
+        <Route
+          path="/explore"
+          element={
+            <PrivateRoute>
+              <Explore />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/bookmarks"
+          element={
+            <PrivateRoute>
+              <Bookmarks />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile/:username"
+          element={
+            <PrivateRoute>
+              <PeerProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/post/:postId"
+          element={
+            <PrivateRoute>
+              <PostDetails />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </>
   );
