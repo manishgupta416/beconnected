@@ -32,7 +32,7 @@ const AddComment = ({ onClose, postId }) => {
         );
 
         dataDispatch({ type: "editComment", payload: null });
-        alert("comment Updated!");
+        // alert("comment Updated!");
         onClose();
         toast.success("Comment Updated! Successfully!!", {
           position: "bottom-right",
