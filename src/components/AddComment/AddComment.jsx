@@ -32,7 +32,6 @@ const AddComment = ({ onClose, postId }) => {
         );
 
         dataDispatch({ type: "editComment", payload: null });
-        // alert("comment Updated!");
         onClose();
         toast.success("Comment Updated! Successfully!!", {
           position: "bottom-right",
@@ -45,7 +44,6 @@ const AddComment = ({ onClose, postId }) => {
           theme: "light",
         });
       } else {
-        // alert("Please add something to reply");
         toast.error("Please add content to reply", {
           position: "bottom-right",
           autoClose: 5000,
@@ -75,7 +73,6 @@ const AddComment = ({ onClose, postId }) => {
           theme: "light",
         });
       } else {
-        // alert("Please add something to reply");
         toast.error("Please add content to reply", {
           position: "bottom-right",
           autoClose: 5000,

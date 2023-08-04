@@ -91,7 +91,6 @@ const AddPost = ({ onClose }) => {
           theme: "light",
         });
       } else {
-        // alert("Please add something to post");
         toast.error("Please add content to post", {
           position: "bottom-right",
           autoClose: 5000,
