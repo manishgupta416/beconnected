@@ -97,10 +97,11 @@ beconnected a social media app where users can create posts, like posts, comment
    `https://github.com/manishgupta416/beconnected.git`
 2. Install dependencies using `npm install`.
 
-3. Create a **.env** file at the root level of the directory (at the level of `package.json` file) and add this as environment variable
+3. Create a **.env** file at the root level of the directory (at the level of `package.json` file) and add this as environment variable (outside src)
 
 ```sh
 REACT_APP_JWT_SECRET = <JWT_SECRET_KEY_OF_YOUR_CHOICE>
+eg: REACT_APP_JWT_SECRET = 'Manish'
 ```
 
 4. Start the development server with `npm start`.
